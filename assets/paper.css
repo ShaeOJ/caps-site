@@ -1,0 +1,86 @@
+/* White-paper page: long-form reading layout on the CAPS theme.
+   Loaded after style.css, which provides the palette and shell. */
+
+.paper {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: clamp(28px, 5vw, 56px) clamp(16px, 5vw, 24px) 40px;
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 230px minmax(0, 1fr);
+  grid-template-areas: "actions actions" "toc article";
+  gap: 0 44px;
+  align-items: start;
+}
+
+.paper-actions { grid-area: actions; display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 26px; }
+.paper-actions .btn { flex: 0 0 auto; min-width: 0; padding: 9px 16px; font-size: 13px; }
+
+/* sticky table of contents */
+.toc {
+  grid-area: toc;
+  position: sticky; top: 76px;
+  border-right: 1px solid var(--line);
+  padding-right: 18px;
+  max-height: calc(100vh - 110px);
+  overflow-y: auto;
+}
+.toc h2 { font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+.toc ul { list-style: none; padding: 0; margin: 0; }
+.toc li { margin: 0 0 9px; }
+.toc a { color: var(--muted); font-size: 13.5px; line-height: 1.35; display: block; }
+.toc a:hover { color: var(--amber); text-decoration: none; }
+
+.paper article { grid-area: article; min-width: 0; }
+
+/* long-form type */
+.paper h1 {
+  font-size: clamp(30px, 5vw, 44px);
+  line-height: 1.15; color: #fff; letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+.paper h2 {
+  font-size: clamp(21px, 3.2vw, 27px); color: var(--amber2);
+  margin: 46px 0 14px; padding-top: 14px;
+  border-top: 1px solid var(--line); letter-spacing: .5px;
+}
+.paper h3 { font-size: 18.5px; color: var(--amber); margin: 30px 0 10px; letter-spacing: .4px; }
+/* keep #anchor jumps clear of the sticky header */
+.paper h2[id], .paper h3[id] { scroll-margin-top: 86px; }
+.paper p { margin: 0 0 15px; line-height: 1.72; font-size: 15.5px; }
+.paper strong { color: var(--fg); font-weight: 700; }
+.paper em { color: var(--muted); }
+.paper a { color: var(--amber); word-break: break-word; }
+
+.paper ul, .paper ol { margin: 0 0 16px; padding-left: 22px; }
+.paper li { margin-bottom: 9px; line-height: 1.65; font-size: 15.5px; }
+.paper ul li::marker { color: var(--amber); }
+.paper ol li::marker { color: var(--amber); font-weight: 700; }
+
+.paper hr { border: 0; border-top: 1px solid var(--line); margin: 34px 0; opacity: .45; }
+
+.paper pre {
+  background: #090b05; border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 15px 16px; overflow-x: auto; margin: 0 0 16px;
+}
+.paper pre code { color: var(--green); font-size: 13px; line-height: 1.65; background: none; padding: 0; }
+.paper :not(pre) > code { font-size: .92em; }
+
+/* tables scroll rather than breaking the page on mobile */
+.paper .tw { overflow-x: auto; margin: 0 0 20px; }
+.paper table { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+.paper th, .paper td { text-align: left; padding: 10px 13px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.paper th { color: var(--amber); font-weight: 400; white-space: nowrap; }
+.paper tbody tr:hover td { background: rgba(245, 166, 35, .05); }
+
+@media (max-width: 900px) {
+  .paper { grid-template-columns: 1fr; grid-template-areas: "actions" "toc" "article"; gap: 0; }
+  .toc {
+    position: static; max-height: none; border-right: 0;
+    border-bottom: 1px solid var(--line); padding: 0 0 18px; margin-bottom: 26px;
+  }
+  .toc ul { columns: 2; column-gap: 24px; }
+  .toc li { break-inside: avoid; }
+}
+@media (max-width: 520px) { .toc ul { columns: 1; } }

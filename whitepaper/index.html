@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>CAPS White Paper v1.0</title>
+<meta name="description" content="The CAPS white paper: design, consensus, supply and emission, the premine stated plainly, and an honest account of the network's security limitations.">
+<meta property="og:title" content="CAPS White Paper v1.0">
+<meta property="og:description" content="Design, consensus, supply, and an honest account of CAPS's security limitations.">
+<meta property="og:image" content="/assets/caps-og.png">
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/paper.css">
+</head><body>
+<canvas id="bgfx" aria-hidden="true"></canvas>
+<div class="scanlines" aria-hidden="true"></div>
+
+<header class="site-nav">
+  <a class="brand" href="/"><img src="/assets/caps-logo.png" alt="" width="34" height="34"><span>CAPS</span></a>
+  <nav>
+    <a href="/#about">About</a>
+    <a href="/#specs">Specs</a>
+    <a href="/#start">Get started</a>
+    <a href="/#downloads">Downloads</a>
+    <a class="ext" href="https://caps.undergroundroots.ca">Explorer &#8599;</a>
+  </nav>
+</header>
+
+<main class="paper">
+  <div class="paper-actions">
+    <a class="btn" href="/whitepaper/CAPS_whitepaper_v1.0.txt">Plain text &#8595;</a>
+    <a class="btn" href="/whitepaper/CAPS_whitepaper_v1.0.md">Markdown &#8595;</a>
+  </div>
+  <aside class="toc"><h2>Contents</h2><ul><li><a href="#abstract">Abstract</a></li>
+<li><a href="#1-why-caps-exists">1. Why CAPS exists</a></li>
+<li><a href="#2-what-caps-is-not">2. What CAPS is not</a></li>
+<li><a href="#3-design-and-consensus">3. Design and consensus</a></li>
+<li><a href="#4-supply-and-emission">4. Supply and emission</a></li>
+<li><a href="#5-the-stack">5. The stack</a></li>
+<li><a href="#6-current-state-of-the-network">6. Current state of the network</a></li>
+<li><a href="#7-security-model-and-honest-limitations">7. Security model and honest limitations</a></li>
+<li><a href="#8-governance-and-continuity">8. Governance and continuity</a></li>
+<li><a href="#9-roadmap">9. Roadmap</a></li>
+<li><a href="#10-how-to-participate">10. How to participate</a></li>
+<li><a href="#appendix-a-chain-parameters">Appendix A — Chain parameters</a></li>
+<li><a href="#appendix-b-repositories">Appendix B — Repositories</a></li>
+<li><a href="#appendix-c-verifying-what-you-run">Appendix C — Verifying what you run</a></li></ul></aside>
+  <article>
+<h1>CAPS — A Wasteland Community Currency</h1>
+<p><strong>White paper · version 1.0</strong> Last verified at <strong>block height 649</strong>, 24 October 2026.</p>
+<p>Website: <a href="https://caps-core.undergroundroots.ca">caps-core.undergroundroots.ca</a> · Explorer: <a href="https://caps.undergroundroots.ca">caps.undergroundroots.ca</a> Wallet: <a href="https://wallet.undergroundroots.ca">wallet.undergroundroots.ca</a> · Source: <a href="https://github.com/ShaeOJ/caps-core">github.com/ShaeOJ/caps-core</a></p>
+<hr>
+<h2 id="abstract">Abstract</h2>
+<p>CAPS is a small SHA-256d proof-of-work cryptocurrency with a post-apocalyptic bottle-cap theme. It exists so that an ordinary person can run an entire crypto stack end to end — mine a block, run a full node, read an explorer, and hold their own keys — on a chain small enough to actually understand.</p>
+<p>CAPS is <strong>not an investment</strong>, has no market, and makes no promises about price. Two facts are stated here rather than buried: block 1 contains a <strong>470,000 CAPS premine</strong>, which is about <strong>93.6% of all coins currently in existence</strong> (though only ~2.2% of the eventual 21,000,000 maximum); and the network is currently <strong>tiny and centralised</strong> — roughly 23 MH/s, essentially all of it from one operator. A single modern ASIC is millions of times that hashrate. Anyone evaluating CAPS should read Section 7 before anything else.</p>
+<hr>
+<h2 id="1-why-caps-exists">1. Why CAPS exists</h2>
+<p>Most coins ask you to buy them. CAPS asks you to run one.</p>
+<p>Learning how a blockchain actually works is harder than it should be. On large chains you will never find a block, running a node is a spectator sport, and the tooling hides the mechanics behind an exchange account. The useful parts — the parts that teach you something — are only visible at small scale.</p>
+<p>CAPS is deliberately small. A hobby ASIC, or even a CPU, can find blocks. A full node syncs in seconds. The pool, explorer and wallet are all open source and documented. Nothing requires permission from anyone.</p>
+<p>Three pillars:</p>
+<ol><li><strong>A themed collectible.</strong> A wasteland bottle-cap currency with its own art and lore — something to earn, hold and trade for the fun of it.</li><li><strong>Learn the whole stack.</strong> Mine → run a node → explore → self-custody, with no gatekeeping and no step you have to take on trust.</li><li><strong>A community currency.</strong> Tips, prizes and perks inside the undergroundroots community. Value from being used, not from hype.</li></ol>
+<hr>
+<h2 id="2-what-caps-is-not">2. What CAPS is not</h2>
+<p>Stated plainly, because it is easier to be clear now than to be misunderstood later:</p>
+<ul><li><strong>Not an investment, and not offered as one.</strong> No returns, no yield, no price target, no expectation of profit from anyone else&#x27;s effort.</li><li><strong>Not a security.</strong> There is no issuance sale, no presale, no ICO.</li><li><strong>Not a store of value.</strong> See Section 7: the chain&#x27;s proof-of-work security is negligible in absolute terms.</li><li><strong>No market.</strong> There is no exchange listing, no market maker, and none is promised.</li><li><strong>No treasury or foundation.</strong> Nobody is raising money against this.</li></ul>
+<p>If you are looking for an asset that goes up, this is the wrong document.</p>
+<hr>
+<h2 id="3-design-and-consensus">3. Design and consensus</h2>
+<p>CAPS is a fork of Bitcoin Silver, itself derived from Bitcoin Core (v24/25 era). The large majority of the codebase is unmodified upstream Bitcoin, which is a deliberate choice: the consensus-critical code is the part you least want a hobbyist rewriting. Changes are confined to chain parameters, the difficulty algorithm, and branding.</p>
+<h3 id="3-1-proof-of-work">3.1 Proof of work</h3>
+<p>CAPS uses <strong>SHA-256d</strong> (double SHA-256) — the same proof-of-work function as Bitcoin. This makes CAPS mineable with ordinary SHA-256 ASIC hardware that people already own, which is the point: the barrier to participation is a miner you may already have in a cupboard. It also means CAPS shares a hash function with chains that have astronomically more hashrate, with the consequences described in Section 7.</p>
+<h3 id="3-2-difficulty-lwma">3.2 Difficulty: LWMA</h3>
+<p>Block interval targets <strong>5 minutes (300 seconds)</strong>.</p>
+<p>Rather than Bitcoin&#x27;s 2016-block retarget, CAPS uses <strong>LWMA</strong> (Linearly Weighted Moving Average) with a window of <strong>N = 96 blocks</strong>, recalculated every block, with solve times clamped at 20× the target.</p>
+<p>The reasoning is practical. On a small network, hashrate arrives and leaves in large relative bursts — one miner connecting can multiply the network&#x27;s capacity. Under Bitcoin&#x27;s retarget, a big miner leaving would strand the chain at a difficulty nobody could meet, potentially for days. A per-block weighted average tracks hashrate closely enough to keep blocks flowing.</p>
+<p>This behaves as intended in practice: when CAPS first passed the N=96 window, difficulty ramped by roughly 67× to match the hashrate that had arrived.</p>
+<p>As a backstop, if no block is found for <strong>60 minutes</strong> (12× the target spacing), difficulty resets to the minimum so that any miner can recover the chain.</p>
+<h3 id="3-3-addresses">3.3 Addresses</h3>
+<ul><li><strong>bech32 (native segwit):</strong> <code>caps1…</code> — the default, used by the web wallet</li><li><strong>Legacy P2PKH:</strong> addresses beginning with <code>C</code></li><li>Full version bytes in Appendix A.</li></ul>
+<hr>
+<h2 id="4-supply-and-emission">4. Supply and emission</h2>
+<div class="tw"><table><thead><tr><th>Parameter</th><th>Value</th></tr></thead><tbody>
+<tr><td>Block reward</td><td>50 CAPS</td></tr>
+<tr><td>Block time</td><td>5 minutes</td></tr>
+<tr><td>Halving interval</td><td>210,000 blocks (~2 years)</td></tr>
+<tr><td>Maximum supply</td><td>21,000,000 CAPS</td></tr>
+<tr><td>Coinbase maturity</td><td>50 blocks</td></tr>
+<tr><td>Premine</td><td>470,000 CAPS in block 1</td></tr>
+</tbody></table></div>
+<h3 id="4-1-the-premine-without-spin">4.1 The premine, without spin</h3>
+<p>Block 1 contains <strong>470,000 CAPS</strong>.</p>
+<p>At height 649, total supply is <strong>502,400 CAPS</strong>. The premine is therefore:</p>
+<ul><li><strong>≈ 93.6% of all CAPS that currently exist</strong></li><li><strong>≈ 2.24% of the 21,000,000 eventual maximum</strong></li><li><strong>≈ 4.5% of the 10,500,000 that will be issued before the first halving</strong></li></ul>
+<p>Both the first number and the last two are true, and they tell different stories. The first is what a sceptic will calculate today, so it is printed here first. The chain is young — 649 blocks — so ordinary emission has not yet had time to dilute the initial allocation. That dilution is mechanical and predictable: at 50 CAPS per 5-minute block, roughly 14,400 CAPS are issued per day, and the premine falls below 50% of supply at around block 9,400 (~33 days of continuous mining from genesis).</p>
+<p><strong>What it is for:</strong> seeding the mining pool and funding community prizes, tips and perks. <strong>Where it is:</strong> held by the project operator in a known wallet. <strong>Commitment:</strong> material spends from the premine will be disclosed publicly.</p>
+<p>A reader who considers a 470,000-coin premine disqualifying is making a reasonable judgement, and this document is not going to argue them out of it.</p>
+<hr>
+<h2 id="5-the-stack">5. The stack</h2>
+<p>Everything described here is live and open source.</p>
+<h3 id="5-1-node">5.1 Node</h3>
+<p><code>capsd</code> / <code>caps-cli</code>, built from <a href="https://github.com/ShaeOJ/caps-core">github.com/ShaeOJ/caps-core</a>. Default P2P port <strong>12566</strong>, RPC <strong>12567</strong>. Linux x86_64 binaries with SHA-256 checksums are published on the website; Windows and macOS are currently build-from-source.</p>
+<h3 id="5-2-mining-pool">5.2 Mining pool</h3>
+<p>A.S.I.C. Mining Pool (<a href="https://asicpool.space">asicpool.space</a>) runs CAPS in both <strong>PROP</strong> (proportional) and <strong>SOLO</strong> modes at <strong>0% fee</strong>. SOLO rewards are paid directly to the miner&#x27;s address in the block&#x27;s coinbase — the pool never custodies them.</p>
+<ul><li>ASIC: <code>stratum+tcp://asicpool.space:8433</code></li><li>CPU / low difficulty: <code>stratum+tcp://asicpool.space:8434</code></li><li>Username: your CAPS address. Password: <code>x</code>.</li></ul>
+<p>Running CAPS through a single pool is a centralisation risk, not a feature; see Section 7.3.</p>
+<h3 id="5-3-explorer">5.3 Explorer</h3>
+<p>An Eiquidus block explorer at <a href="https://caps.undergroundroots.ca">caps.undergroundroots.ca</a> — blocks, transactions, address balances and history, with a public <code>/ext/</code> API.</p>
+<h3 id="5-4-web-wallet">5.4 Web wallet</h3>
+<p>A <strong>non-custodial</strong> browser wallet at <a href="https://wallet.undergroundroots.ca">wallet.undergroundroots.ca</a>.</p>
+<ul><li>BIP39 mnemonic → BIP32 HD (BIP84, P2WPKH) using CAPS network parameters</li><li>Keys are generated, encrypted and used <strong>only in the browser</strong>; the server never receives them</li><li>Seed encrypted at rest with scrypt (N=2¹⁷) → AES-GCM in IndexedDB</li><li>Transactions are built and signed client-side; the server only relays the signed hex to a node</li><li>Strict Content-Security-Policy, no third-party scripts, no analytics</li></ul>
+<p>Crucially, the wallet has a <strong>reproducible build</strong>: a clean clone of the public repository, built with <code>npm ci</code>, produces a bundle byte-identical to the one the site serves. You do not have to trust the operator — you can verify:</p>
+<pre><code>git clone https://github.com/ShaeOJ/caps-web-wallet &amp;&amp; cd caps-web-wallet/web
+npm ci &amp;&amp; npm run build
+sha256sum dist/app.js
+curl -s https://wallet.undergroundroots.ca/app.js | sha256sum   # must match</code></pre>
+<p>Its limits are described honestly in Section 7.4.</p>
+<hr>
+<h2 id="6-current-state-of-the-network">6. Current state of the network</h2>
+<p>Measured at height 649, 24 October 2026:</p>
+<div class="tw"><table><thead><tr><th>Metric</th><th>Value</th></tr></thead><tbody>
+<tr><td>Block height</td><td>649</td></tr>
+<tr><td>Total supply</td><td>502,400 CAPS</td></tr>
+<tr><td>Difficulty</td><td>~1.56</td></tr>
+<tr><td>Network hashrate</td><td>~23 MH/s</td></tr>
+<tr><td>Reachable peers (seed node)</td><td>2</td></tr>
+<tr><td>Chain size on disk</td><td>&lt; 1 MB</td></tr>
+</tbody></table></div>
+<p>This is a young, small network. The numbers are printed so nobody has to guess.</p>
+<hr>
+<h2 id="7-security-model-and-honest-limitations">7. Security model and honest limitations</h2>
+<p>This is the most important section of this document.</p>
+<h3 id="7-1-proof-of-work-security-is-negligible">7.1 Proof-of-work security is negligible</h3>
+<p>CAPS network hashrate is approximately <strong>23 MH/s</strong>. A single modern SHA-256 ASIC — for example an Antminer S19 at ~100 TH/s — is roughly <strong>4.2 million times</strong> the entire CAPS network.</p>
+<p>The consequence is unambiguous: <strong>anyone with one second-hand miner, or a few dollars of rented hashrate, can reorganise the CAPS chain at will.</strong> CAPS does not have meaningful proof-of-work security in absolute terms and does not claim to. Any statement that CAPS is &quot;secured by SHA-256 like Bitcoin&quot; would be technically true about the algorithm and dangerously misleading about the security, and is not made here.</p>
+<h3 id="7-2-why-that-is-survivable-today-and-what-would-change-it">7.2 Why that is survivable today, and what would change it</h3>
+<p>Double-spend attacks are economically motivated: an attacker reorganises a chain to reverse a payment they have already converted into something else. CAPS has no exchange, no market and no liquid off-ramp. There is, at present, nothing to steal. The realistic threat is <strong>vandalism</strong> — someone reorganising the chain to prove they can — which is disruptive but not profitable.</p>
+<p>This is an argument about the <em>current</em> stakes, not a defence of weak security. If CAPS ever acquired a liquid market while hashrate remained this low, the risk profile would change materially and this section would need rewriting before, not after.</p>
+<p><strong>Do not treat CAPS as a settlement layer for anything valuable.</strong></p>
+<h3 id="7-3-centralisation">7.3 Centralisation</h3>
+<p>Stated plainly:</p>
+<ul><li>Essentially <strong>all current hashrate is a single operator</strong>.</li><li>The seed node reports <strong>2 connections</strong> — the network is close to self-contained.</li><li>One person currently runs the node, the pool, the explorer and the wallet.</li></ul>
+<p>This means CAPS today is closer to a well-documented single-operator system than to a decentralised network. The most valuable contribution anyone can make is not buying anything — it is <strong>running an independent node, or mining from somewhere else.</strong></p>
+<h3 id="7-4-the-web-wallet-s-trust-boundary">7.4 The web wallet&#x27;s trust boundary</h3>
+<p>The wallet is genuinely non-custodial: keys never leave the browser, and this is verifiable in the source. But a web wallet <strong>serves the key-handling code on every page load</strong>. If the hosting infrastructure or the source repository were compromised, an attacker could serve modified JavaScript that exfiltrates seeds, and a Content-Security-Policy cannot prevent same-origin code from doing so.</p>
+<p>Mitigations in place: reproducible builds and published hashes (Section 5.4), branch protection on the repository, strict security headers, and a backend that is not reachable from the public internet.</p>
+<p>Mitigations <strong>not</strong> possible in JavaScript: secure memory zeroing, and defence against malware or a hostile browser extension on the user&#x27;s own machine.</p>
+<p>Recommendation: treat the web wallet as a <strong>hot wallet</strong> — appropriate for mining payouts and community-scale amounts. Hardware-wallet and offline-signing support are on the roadmap.</p>
+<h3 id="7-5-single-operator-continuity-risk">7.5 Single-operator continuity risk</h3>
+<p>If the current operator stopped, the pool, explorer and wallet would go offline. The chain itself would survive only as long as someone runs a node. See Section 8.</p>
+<hr>
+<h2 id="8-governance-and-continuity">8. Governance and continuity</h2>
+<p>There is no foundation, no governance token, no voting mechanism, and no treasury. CAPS is a project run by one person, which is stated here rather than dressed up as decentralisation.</p>
+<p>What makes that survivable:</p>
+<ul><li><strong>Everything is open source.</strong> Node, pool, explorer, wallet and website are all published.</li><li><strong>Chain parameters are documented</strong> (Appendix A), so anyone can build a compatible node.</li><li><strong>Nothing requires permission.</strong> Anyone may run a node, start a competing pool, host an explorer, or fork the project entirely.</li><li><strong>No infrastructure holds user funds.</strong> The wallet is non-custodial and SOLO mining pays directly to the coinbase.</li></ul>
+<p>If the operator disappears, CAPS does not automatically die — but it will only continue if other people are already running nodes. That is the honest answer, and it is another reason Section 7.3 matters.</p>
+<p>Consensus changes, if any are ever needed, will be announced publicly with the reasoning and lead time, and will require node operators to upgrade voluntarily.</p>
+<hr>
+<h2 id="9-roadmap">9. Roadmap</h2>
+<p>This is a statement of direction, not a set of promises, and deliberately carries no dates.</p>
+<h3 id="shipped">Shipped</h3>
+<ul><li>Chain live on mainnet (SHA-256d, LWMA difficulty)</li><li>Mining pool: PROP + SOLO, 0% fee, ASIC and CPU ports</li><li>Block explorer</li><li>Non-custodial web wallet with reproducible builds</li><li>Public website with Linux node binaries and checksums</li></ul>
+<h3 id="near-term-lower-the-barrier-to-running-caps">Near term — lower the barrier to running CAPS</h3>
+<ul><li><strong>Windows and macOS node binaries</strong> (currently Linux-only) — the single biggest accessibility gap</li><li><strong>A one-command node setup and published seed addresses.</strong> At this size, node count is a more meaningful decentralisation metric than hashrate</li><li>Wallet improvements: receive-address rotation, clearer backup flow, offline/PWA use</li></ul>
+<h3 id="medium-term-make-it-genuinely-used">Medium term — make it genuinely used</h3>
+<ul><li>Community tipping and prizes actually circulating — the community-currency pillar has to be demonstrated, not asserted</li><li><strong>Independent miners and a second pool</strong>, so the current pool is not a chokepoint and Section 7.3 stops being true</li><li>Hardware-wallet / offline signing support</li></ul>
+<h3 id="long-term-resilience">Long term — resilience</h3>
+<ul><li>Node diversity across operators and locations</li><li>Revisiting attack posture <em>if</em> hashrate ever grows enough to matter</li><li>A boring, well-documented upgrade process</li></ul>
+<h3 id="explicitly-not-on-the-roadmap">Explicitly not on the roadmap</h3>
+<p>These are commitments, not omissions:</p>
+<ul><li>No exchange-listing promises, market making, or price targets</li><li>No presale, ICO, staking yields, or &quot;rewards programmes&quot;</li><li>No treasury raise and no governance token</li><li>No claim that CAPS is a store of value or a hedge against anything</li></ul>
+<hr>
+<h2 id="10-how-to-participate">10. How to participate</h2>
+<p><strong>Mine it</strong></p>
+<pre><code>stratum+tcp://asicpool.space:8433   # ASIC
+stratum+tcp://asicpool.space:8434   # CPU / low difficulty
+username: &lt;your caps1… address&gt;     password: x</code></pre>
+<p><strong>Run a node</strong> — minimal <code>caps.conf</code>:</p>
+<pre><code>server=1
+daemon=1
+txindex=1
+rpcuser=choose_a_user
+rpcpassword=choose_a_strong_password
+addnode=caps.undergroundroots.ca</code></pre>
+<p>Start <code>capsd</code>, then check progress with <code>caps-cli getblockchaininfo</code>.</p>
+<p><strong>Hold it</strong> — create a wallet at <a href="https://wallet.undergroundroots.ca">wallet.undergroundroots.ca</a>, write down the 12-word phrase offline, and verify the bundle hash (Section 5.4).</p>
+<p><strong>Explore it</strong> — <a href="https://caps.undergroundroots.ca">caps.undergroundroots.ca</a></p>
+<p><strong>Read or fork the code</strong> — <a href="https://github.com/ShaeOJ/caps-core">github.com/ShaeOJ/caps-core</a></p>
+<p>The most useful thing you can do for CAPS is run a node and mine from your own hardware.</p>
+<hr>
+<h2 id="appendix-a-chain-parameters">Appendix A — Chain parameters</h2>
+<div class="tw"><table><thead><tr><th>Parameter</th><th>Mainnet</th><th>Regtest</th></tr></thead><tbody>
+<tr><td>bech32 HRP</td><td><code>caps</code></td><td><code>capsrt</code></td></tr>
+<tr><td>P2PKH version byte</td><td><code>0x1C</code> (addresses start <code>C</code>)</td><td><code>0x6F</code> (111)</td></tr>
+<tr><td>P2SH version byte</td><td><code>0x1D</code></td><td><code>0xC4</code> (196)</td></tr>
+<tr><td>WIF / secret key</td><td><code>0x9C</code></td><td><code>0xEF</code> (239)</td></tr>
+<tr><td>BIP32 xpub / xprv</td><td><code>0x0488B21E</code> / <code>0x0488ADE4</code></td><td><code>0x043587CF</code> / <code>0x04358394</code></td></tr>
+<tr><td>P2P port</td><td>12566</td><td>—</td></tr>
+<tr><td>RPC port</td><td>12567</td><td>—</td></tr>
+<tr><td>PoW algorithm</td><td>SHA-256d</td><td>SHA-256d</td></tr>
+<tr><td>Target block time</td><td>300 s</td><td>300 s</td></tr>
+<tr><td>Difficulty algorithm</td><td>LWMA, N = 96</td><td>—</td></tr>
+<tr><td>Emergency difficulty reset</td><td>after 60 min without a block</td><td>—</td></tr>
+<tr><td>Block reward</td><td>50 CAPS</td><td>50 CAPS</td></tr>
+<tr><td>Halving interval</td><td>210,000 blocks</td><td>210,000 blocks</td></tr>
+<tr><td>Maximum supply</td><td>21,000,000 CAPS</td><td>—</td></tr>
+<tr><td>Coinbase maturity</td><td>50 blocks</td><td>50 blocks</td></tr>
+<tr><td>Wallet derivation path</td><td><code>m/84&#x27;/0&#x27;/0&#x27;/{0,1}/i</code> (BIP84, P2WPKH)</td><td>same</td></tr>
+</tbody></table></div>
+<h2 id="appendix-b-repositories">Appendix B — Repositories</h2>
+<div class="tw"><table><thead><tr><th>Component</th><th>Repository</th></tr></thead><tbody>
+<tr><td>Node (Caps Core)</td><td><a href="https://github.com/ShaeOJ/caps-core">github.com/ShaeOJ/caps-core</a></td></tr>
+<tr><td>Web wallet</td><td><a href="https://github.com/ShaeOJ/caps-web-wallet">github.com/ShaeOJ/caps-web-wallet</a></td></tr>
+<tr><td>Website</td><td><a href="https://github.com/ShaeOJ/caps-site">github.com/ShaeOJ/caps-site</a></td></tr>
+</tbody></table></div>
+<h2 id="appendix-c-verifying-what-you-run">Appendix C — Verifying what you run</h2>
+<p><strong>Node binaries:</strong> download <code>SHA256SUMS.txt</code> from <a href="https://caps-core.undergroundroots.ca">caps-core.undergroundroots.ca</a> and run <code>sha256sum -c SHA256SUMS.txt</code>.</p>
+<p><strong>Web wallet:</strong> see Section 5.4. A matching hash proves the served code is the published source. A mismatch means <strong>do not enter your seed phrase</strong>.</p>
+<hr>
+<p><em>CAPS is a community project of undergroundroots. It is not an investment, and nothing in this document is financial advice. All figures were verified at block height 649 on 24 October 2026 and will drift as the chain grows.</em></p>
+  </article>
+</main>
+
+<footer class="site-foot">
+  <div class="foot-links">
+    <a href="/">Home</a>
+    <a href="https://github.com/ShaeOJ/caps-core">GitHub</a>
+    <a href="https://caps.undergroundroots.ca">Explorer</a>
+    <a href="https://wallet.undergroundroots.ca">Wallet</a>
+    <a href="https://asicpool.space">Pool</a>
+  </div>
+  <p>CAPS &middot; a community project of <a href="https://undergroundroots.ca">undergroundroots</a>. Not an investment &mdash; a wasteland currency you actually use.</p>
+</footer>
+<script src="/assets/bgfx.js" defer></script>
+</body></html>
