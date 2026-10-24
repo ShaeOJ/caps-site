@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>CAPS — mine it, own it, trade it</title>
+<meta name="description" content="CAPS is a post-apocalyptic bottle-cap community currency you can mine, explore, and self-custody. SHA256d proof-of-work. Not an investment — value is real community use.">
+<meta property="og:title" content="CAPS — a wasteland community currency">
+<meta property="og:description" content="Mine it. Own it. Trade it. A SHA256d community coin you can run, mine, explore and self-custody.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="/assets/caps-og.png">
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<div class="scanlines" aria-hidden="true"></div>
+
+<header class="site-nav">
+  <a class="brand" href="#top"><img src="/assets/caps-logo.png" alt="" width="34" height="34"><span>CAPS</span></a>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#specs">Specs</a>
+    <a href="#start">Get started</a>
+    <a href="#downloads">Downloads</a>
+    <a class="ext" href="https://caps.undergroundroots.ca">Explorer ↗</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <img class="hero-logo" src="/assets/caps-logo.png" alt="CAPS bottle-cap logo" width="200" height="200">
+    <h1>CAPS</h1>
+    <p class="tag">Mine it. Own it. Trade it.</p>
+    <p class="sub">A post-apocalyptic bottle-cap <b>community currency</b> you can mine, explore, and self-custody — for fun, for the community, and for learning how crypto really works.</p>
+    <div class="cta">
+      <a class="btn primary" href="#start">Get started</a>
+      <a class="btn" href="https://wallet.undergroundroots.ca">Web wallet ↗</a>
+      <a class="btn" href="https://caps.undergroundroots.ca">Explorer ↗</a>
+      <a class="btn ghost" href="https://github.com/ShaeOJ/caps-core">Source ↗</a>
+    </div>
+    <p class="honest">Honest by design: CAPS is <b>not pitched as an investment</b>. Its value is real community use — tips, prizes, and perks across the wasteland.</p>
+  </section>
+
+  <section id="about" class="band">
+    <h2><span class="num">01</span> What is CAPS?</h2>
+    <p class="lead">CAPS is a small, honest proof-of-work coin with three jobs:</p>
+    <div class="pillars">
+      <div class="card">
+        <div class="ico">🍾</div>
+        <h3>A themed collectible</h3>
+        <p>A fun, wasteland-flavoured bottle-cap currency with its own art and lore. Something to earn, hold, and trade for the love of it.</p>
+      </div>
+      <div class="card">
+        <div class="ico">🛠️</div>
+        <h3>Learn the whole stack</h3>
+        <p>Mine it with an ASIC or a CPU, run a full node, browse the block explorer, and hold your own keys in a non-custodial wallet. No gatekeeping — the entire pipeline is open.</p>
+      </div>
+      <div class="card">
+        <div class="ico">🤝</div>
+        <h3>A community currency</h3>
+        <p>Used for tips, prizes, and perks across the undergroundroots community. Value comes from being used, not from hype.</p>
+      </div>
+    </div>
+    <p class="note"><b>Transparency note:</b> block&nbsp;1 contains a 470,000&nbsp;CAPS premine (used to seed the pool and community). Every other block pays the standard 50&nbsp;CAPS reward. SHA256d proof-of-work, LWMA difficulty — the same battle-tested machinery as Bitcoin, just tuned for a community-scale coin.</p>
+  </section>
+
+  <section id="specs" class="band alt">
+    <h2><span class="num">02</span> Specs &amp; tokenomics</h2>
+    <div class="table-wrap">
+    <table class="specs">
+      <tbody>
+        <tr><th>Algorithm</th><td>SHA-256d (double SHA-256) proof-of-work</td></tr>
+        <tr><th>Block time</th><td>5 minutes (300 s)</td></tr>
+        <tr><th>Block reward</th><td>50 CAPS</td></tr>
+        <tr><th>Halving</th><td>every 210,000 blocks (~2 years)</td></tr>
+        <tr><th>Max supply</th><td>21,000,000 CAPS</td></tr>
+        <tr><th>Coinbase maturity</th><td>50 blocks</td></tr>
+        <tr><th>Difficulty</th><td>LWMA, per-block (window N = 96)</td></tr>
+        <tr><th>Premine</th><td>block 1 = 470,000 CAPS (community/pool seed)</td></tr>
+        <tr><th>Address format</th><td>bech32 <code>caps1…</code> · legacy <code>C…</code></td></tr>
+        <tr><th>P2P / RPC ports</th><td>12566 / 12567</td></tr>
+        <tr><th>Version</th><td>Caps Core v1.0.0</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section id="start" class="band">
+    <h2><span class="num">03</span> Get started</h2>
+
+    <div class="step">
+      <h3>⛏️ Mine CAPS</h3>
+      <p>Point any SHA-256 miner at the community pool and get paid to your own CAPS address.</p>
+      <pre><code># ASIC miners
+stratum+tcp://asicpool.space:8433   user: &lt;your caps1 address&gt;   pass: x
+
+# CPU / low-difficulty
+stratum+tcp://asicpool.space:8434   user: &lt;your caps1 address&gt;   pass: x</code></pre>
+      <p class="hint">Don't have an address yet? Create one in the <a href="https://wallet.undergroundroots.ca">web wallet</a> — your keys stay in your browser.</p>
+    </div>
+
+    <div class="step">
+      <h3>🖧 Run a full node</h3>
+      <p>Build <code>capsd</code> from source (or grab a binary below), then drop this in your <code>caps.conf</code>:</p>
+      <pre><code>server=1
+daemon=1
+txindex=1
+rpcuser=choose_a_user
+rpcpassword=choose_a_strong_password
+addnode=caps.undergroundroots.ca</code></pre>
+      <p class="hint">Start it with <code>capsd</code> and check progress with <code>caps-cli getblockchaininfo</code>. Default P2P port is 12566.</p>
+    </div>
+
+    <div class="step">
+      <h3>🔎 Explore &amp; 🔐 self-custody</h3>
+      <p>Watch the chain on the <a href="https://caps.undergroundroots.ca">block explorer</a>, and hold your own CAPS in the non-custodial <a href="https://wallet.undergroundroots.ca">web wallet</a> (keys are generated, encrypted, and used entirely in your browser).</p>
+    </div>
+  </section>
+
+  <section id="downloads" class="band alt">
+    <h2><span class="num">04</span> Downloads</h2>
+    <p class="lead">CAPS is open source. Build from source on any platform, or grab a prebuilt Linux node below.</p>
+
+    <div class="dl-grid">
+      <a class="dl" href="https://github.com/ShaeOJ/caps-core">
+        <div class="dl-ico">💻</div>
+        <div><h3>Source code</h3><p>Build from source — Linux, macOS, Windows. Branch <code>caps-rebrand</code>.</p><span class="dl-meta">github.com/ShaeOJ/caps-core</span></div>
+      </a>
+      <a class="dl" href="/downloads/caps-v1.0.0-linux-x86_64.tar.gz">
+        <div class="dl-ico">🐧</div>
+        <div><h3>Linux x86_64 node</h3><p><code>capsd</code>, <code>caps-cli</code>, <code>caps-tx</code>, <code>caps-wallet</code> (v1.0.0, stripped).</p><span class="dl-meta" id="dl-size">caps-v1.0.0-linux-x86_64.tar.gz</span></div>
+      </a>
+      <a class="dl" href="/downloads/SHA256SUMS.txt">
+        <div class="dl-ico">🔏</div>
+        <div><h3>Checksums</h3><p>Verify your download with <code>sha256sum -c SHA256SUMS.txt</code>.</p><span class="dl-meta">SHA256SUMS.txt</span></div>
+      </a>
+    </div>
+    <p class="note">Windows and macOS builds: compile from source for now (standard Bitcoin-style build). Verify every binary against the published checksum before running it.</p>
+  </section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="foot-links">
+    <a href="https://github.com/ShaeOJ/caps-core">GitHub</a>
+    <a href="https://caps.undergroundroots.ca">Explorer</a>
+    <a href="https://wallet.undergroundroots.ca">Wallet</a>
+    <a href="https://asicpool.space">Pool</a>
+  </div>
+  <p>CAPS · a community project of <a href="https://undergroundroots.ca">undergroundroots</a>. Not an investment — a wasteland currency you actually use.</p>
+</footer>
+</body>
+</html>
