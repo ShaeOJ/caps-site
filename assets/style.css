@@ -13,6 +13,7 @@
   --muted: #8a9470;
   --amber: #f5a623;
   --amber-dim: #c9861b;
+  --accent-rgb: 245, 166, 35; /* drives the #bgfx lattice tint */
   --green: #00ff41;
   --radius: 10px;
   --mono: 'Share Tech Mono', ui-monospace, 'Cascadia Code', Consolas, monospace;
@@ -22,9 +23,9 @@
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
-  background:
-    radial-gradient(1100px 600px at 50% -200px, #1a2010 0%, transparent 70%),
-    var(--bg);
+  /* base colour only — the gradient wash lives on ::before UNDER #bgfx so the
+     lattice animation stays visible across the whole page */
+  background: var(--bg);
   color: var(--fg);
   font-family: var(--mono);
   line-height: 1.6;
@@ -35,6 +36,19 @@ a { color: var(--amber); text-decoration: none; }
 a:hover { color: var(--amber-dim); text-decoration: underline; }
 code { color: var(--green); background: #0a0c06; padding: 1px 5px; border-radius: 4px; font-size: .92em; }
 h1, h2, h3 { line-height: 1.2; }
+
+/* gradient wash sits UNDER the lattice canvas */
+body::before {
+  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(1100px 600px at 50% -200px, #1a2010 0%, transparent 70%);
+}
+
+/* background FX lattice (drifting nodes + hash pulses + block builds) */
+#bgfx { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+
+/* page sections sit above the canvas; keep their fills translucent so the
+   lattice reads through the whole page rather than only behind the nav */
+.site-nav, main { position: relative; z-index: 1; }
 
 /* faint CRT scanlines */
 .scanlines {
@@ -84,14 +98,14 @@ main { max-width: 980px; margin: 0 auto; padding: 0 clamp(16px, 5vw, 24px); posi
 
 /* bands */
 .band { padding: clamp(44px, 8vw, 80px) 0; border-top: 1px solid var(--line); }
-.band.alt { background: linear-gradient(180deg, var(--bg2), transparent); }
+.band.alt { background: linear-gradient(180deg, rgba(17,20,11,.72), transparent); }
 .band h2 { font-size: clamp(24px, 5vw, 34px); color: #fff; margin: 0 0 8px; letter-spacing: 1px; }
 .band h2 .num { color: var(--amber); font-size: .6em; margin-right: 12px; vertical-align: middle; opacity: .8; }
 .lead { color: var(--muted); font-size: 17px; margin: 0 0 28px; }
 
 /* pillars */
 .pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
-.card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; transition: .15s; }
+.card { background: rgba(21,26,15,.78); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; transition: .15s; }
 .card:hover { border-color: var(--amber); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,.4); }
 .card .ico { font-size: 30px; margin-bottom: 8px; }
 .card h3 { margin: 0 0 8px; color: var(--amber); font-size: 18px; letter-spacing: .5px; }
@@ -117,7 +131,7 @@ pre code { background: none; color: var(--green); padding: 0; font-size: 13.5px;
 
 /* downloads */
 .dl-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
-.dl { display: flex; gap: 14px; align-items: flex-start; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; color: var(--fg); transition: .15s; }
+.dl { display: flex; gap: 14px; align-items: flex-start; background: rgba(21,26,15,.78); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; color: var(--fg); transition: .15s; }
 .dl:hover { border-color: var(--amber); text-decoration: none; transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,.4); }
 .dl-ico { font-size: 28px; }
 .dl h3 { margin: 0 0 4px; color: var(--amber); font-size: 17px; }
@@ -125,7 +139,7 @@ pre code { background: none; color: var(--green); padding: 0; font-size: 13.5px;
 .dl-meta { color: var(--muted); font-size: 12.5px; word-break: break-all; }
 
 /* footer */
-.site-foot { border-top: 1px solid var(--line); margin-top: 20px; padding: 40px clamp(16px, 5vw, 48px); text-align: center; color: var(--muted); font-size: 13.5px; }
+.site-foot { position: relative; z-index: 1; border-top: 1px solid var(--line); margin-top: 20px; padding: 40px clamp(16px, 5vw, 48px); text-align: center; color: var(--muted); font-size: 13.5px; }
 .foot-links { display: flex; gap: 22px; justify-content: center; flex-wrap: wrap; margin-bottom: 14px; }
 .foot-links a { color: var(--amber); text-transform: uppercase; letter-spacing: 1px; font-size: 13px; }
 .site-foot p { margin: 0; max-width: 560px; margin-inline: auto; }
