@@ -9,8 +9,8 @@
 <meta property="og:description" content="Design, consensus, supply, and an honest account of CAPS's security limitations.">
 <meta property="og:image" content="/assets/caps-og.png">
 <link rel="icon" type="image/png" href="/assets/favicon.png">
-<link rel="stylesheet" href="/assets/style.css">
-<link rel="stylesheet" href="/assets/paper.css">
+<link rel="stylesheet" href="/assets/style.css?v=202610242236">
+<link rel="stylesheet" href="/assets/paper.css?v=202610242236">
 </head><body>
 <canvas id="bgfx" aria-hidden="true"></canvas>
 <div class="scanlines" aria-hidden="true"></div>
@@ -52,7 +52,7 @@
 <hr>
 <h2 id="abstract">Abstract</h2>
 <p>CAPS is a small SHA-256d proof-of-work cryptocurrency with a post-apocalyptic bottle-cap theme. It exists so that an ordinary person can run an entire crypto stack end to end — mine a block, run a full node, read an explorer, and hold their own keys — on a chain small enough to actually understand.</p>
-<p>CAPS is <strong>not an investment</strong>, has no market, and makes no promises about price. Two facts are stated here rather than buried: block 1 contains a <strong>470,000 CAPS premine</strong>, which is about <strong>93.6% of all coins currently in existence</strong> (though only ~2.24% of the eventual 21,000,000 maximum); and the network is currently <strong>tiny and centralised</strong> — roughly 23 MH/s, essentially all of it from one operator. A single modern ASIC is millions of times that hashrate. Anyone evaluating CAPS should read Section 7 before anything else.</p>
+<p>CAPS is <strong>not an investment</strong>, has no market, and makes no promises about price. Two facts are stated here rather than buried: block 1 contains a <strong>470,000 CAPS premine</strong>, which is about <strong>93.6% of all coins currently in existence</strong> (though only ~2.2% of the eventual 21,000,000 maximum); and the network is currently <strong>tiny and centralised</strong> — roughly 23 MH/s, essentially all of it from one operator. A single modern ASIC is millions of times that hashrate. Anyone evaluating CAPS should read Section 7 before anything else.</p>
 <hr>
 <h2 id="1-why-caps-exists">1. Why CAPS exists</h2>
 <p>Most coins ask you to buy them. CAPS asks you to run one.</p>
@@ -131,7 +131,7 @@ curl -s https://wallet.undergroundroots.ca/app.js | sha256sum   # must match</co
 <h2 id="7-security-model-and-honest-limitations">7. Security model and honest limitations</h2>
 <p>This is the most important section of this document.</p>
 <h3 id="7-1-proof-of-work-security-is-negligible">7.1 Proof-of-work security is negligible</h3>
-<p>CAPS network hashrate is approximately <strong>23 MH/s</strong>. A single modern SHA-256 ASIC — for example an Antminer S19 at ~100 TH/s — is roughly <strong>4.4 million times</strong> the entire CAPS network.</p>
+<p>CAPS network hashrate is approximately <strong>23 MH/s</strong>. A single modern SHA-256 ASIC — for example an Antminer S19 at ~100 TH/s — is roughly <strong>4.2 million times</strong> the entire CAPS network.</p>
 <p>The consequence is unambiguous: <strong>anyone with one second-hand miner, or a few dollars of rented hashrate, can reorganise the CAPS chain at will.</strong> CAPS does not have meaningful proof-of-work security in absolute terms and does not claim to. Any statement that CAPS is &quot;secured by SHA-256 like Bitcoin&quot; would be technically true about the algorithm and dangerously misleading about the security, and is not made here.</p>
 <h3 id="7-2-why-that-is-survivable-today-and-what-would-change-it">7.2 Why that is survivable today, and what would change it</h3>
 <p>Double-spend attacks are economically motivated: an attacker reorganises a chain to reverse a payment they have already converted into something else. CAPS has no exchange, no market and no liquid off-ramp. There is, at present, nothing to steal. The realistic threat is <strong>vandalism</strong> — someone reorganising the chain to prove they can — which is disruptive but not profitable.</p>
@@ -231,6 +231,6 @@ addnode=caps.undergroundroots.ca</code></pre>
   </div>
   <p>CAPS &middot; a community project of <a href="https://undergroundroots.ca">undergroundroots</a>. Not an investment &mdash; a wasteland currency you actually use.</p>
 </footer>
-<script src="/assets/bgfx.js" defer></script>
-<script src="/assets/beta-notice.js" defer></script>
+<script src="/assets/bgfx.js?v=202610242236" defer></script>
+<script src="/assets/beta-notice.js?v=202610242236" defer></script>
 </body></html>

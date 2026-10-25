@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 """Render the CAPS white paper markdown into a themed standalone HTML page."""
-import io, re, sys, html
+import io, re, sys, html, datetime
+
+# Assets are served with max-age=604800, so a changed stylesheet would be
+# held stale for a week — which once left the beta modal unstyled and
+# rendering below the footer. Version every local asset reference.
+ASSET_V = datetime.datetime.now().strftime('%Y%m%d%H%M')
 
 src, dst = sys.argv[1], sys.argv[2]
 lines = io.open(src, encoding='utf-8').read().split('\n')
@@ -108,8 +113,8 @@ page = f'''<!doctype html>
 <meta property="og:description" content="Design, consensus, supply, and an honest account of CAPS's security limitations.">
 <meta property="og:image" content="/assets/caps-og.png">
 <link rel="icon" type="image/png" href="/assets/favicon.png">
-<link rel="stylesheet" href="/assets/style.css">
-<link rel="stylesheet" href="/assets/paper.css">
+<link rel="stylesheet" href="/assets/style.css?v={ASSET_V}">
+<link rel="stylesheet" href="/assets/paper.css?v={ASSET_V}">
 </head><body>
 <canvas id="bgfx" aria-hidden="true"></canvas>
 <div class="scanlines" aria-hidden="true"></div>
@@ -146,7 +151,8 @@ page = f'''<!doctype html>
   </div>
   <p>CAPS &middot; a community project of <a href="https://undergroundroots.ca">undergroundroots</a>. Not an investment &mdash; a wasteland currency you actually use.</p>
 </footer>
-<script src="/assets/bgfx.js" defer></script>
+<script src="/assets/bgfx.js?v={ASSET_V}" defer></script>
+<script src="/assets/beta-notice.js?v={ASSET_V}" defer></script>
 </body></html>
 '''
 io.open(dst, 'w', encoding='utf-8').write(page)
