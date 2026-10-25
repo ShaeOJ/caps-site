@@ -145,3 +145,86 @@ pre code { background: none; color: var(--green); padding: 0; font-size: 13.5px;
 .site-foot p { margin: 0; max-width: 560px; margin-inline: auto; }
 
 @media (prefers-reduced-motion: reduce) { .hero-logo { animation: none; } * { scroll-behavior: auto; } }
+
+/* ── Ministry bulletin: BETA notice ───────────────────────────────────────
+   Modal shown once per visitor (localStorage), warning that CAPS is still
+   under active development. Same reactor-screen language as the rest of the
+   site: scanline sweep, amber HUD, mono type. */
+.beta-overlay {
+  position: fixed; inset: 0; z-index: 9999;
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
+  background: rgba(5, 7, 3, .82);
+  -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px);
+  opacity: 0; transition: opacity .3s ease;
+}
+.beta-overlay.show { opacity: 1; }
+
+.beta-box {
+  position: relative; overflow: hidden;
+  width: min(560px, 100%); max-height: 88vh; overflow-y: auto;
+  padding: 30px clamp(20px, 5vw, 36px) 26px;
+  background: linear-gradient(180deg, #161c0f, #10140a);
+  border: 1px solid var(--amber); border-radius: var(--radius);
+  box-shadow: 0 0 0 1px rgba(245,166,35,.15), 0 24px 70px rgba(0,0,0,.7),
+              inset 0 0 60px rgba(245,166,35,.05);
+  animation: betaIn .45s cubic-bezier(.2,.7,.3,1) both;
+  text-align: center;
+}
+@keyframes betaIn {
+  from { opacity: 0; transform: translateY(14px) scale(.97); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* slow scanline sweep across the panel */
+.beta-scan { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.beta-scan::after {
+  content: ""; position: absolute; left: 0; right: 0; height: 40%;
+  background: linear-gradient(180deg, transparent, rgba(245,166,35,.07), transparent);
+  animation: betaSweep 3s linear infinite;
+}
+@keyframes betaSweep { from { top: -40%; } to { top: 100%; } }
+
+.beta-eyebrow {
+  font-size: 11px; letter-spacing: 5px; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 14px;
+}
+.beta-title {
+  font-size: clamp(19px, 4vw, 25px); line-height: 1.25; color: #fff;
+  letter-spacing: 1.5px; margin-bottom: 14px;
+  text-shadow: 0 0 26px rgba(245,166,35,.45);
+}
+.beta-lede { font-size: 15px; color: var(--fg); line-height: 1.6; margin-bottom: 16px; }
+.beta-lede b { color: var(--amber); }
+
+.beta-list {
+  list-style: none; padding: 0; margin: 0 0 18px;
+  text-align: left; font-size: 14px; line-height: 1.55;
+}
+.beta-list li {
+  position: relative; padding: 7px 0 7px 22px;
+  border-bottom: 1px solid var(--line); color: var(--muted);
+}
+.beta-list li:last-child { border-bottom: 0; }
+.beta-list li::before { content: "\25B8"; position: absolute; left: 4px; color: var(--amber); }
+.beta-list b { color: var(--green); }
+
+.beta-foot { font-size: 13px; color: var(--amber2); letter-spacing: .5px; margin-bottom: 18px; }
+
+.beta-btn {
+  width: 100%; cursor: pointer; font: inherit; font-size: 15px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  padding: 12px 18px; border-radius: 9px;
+  border: 1px solid var(--amber);
+  background: linear-gradient(180deg, #ffbf47, var(--amber)); color: #1a1400;
+  transition: box-shadow .15s, transform .06s;
+}
+.beta-btn:hover { box-shadow: 0 0 22px rgba(245,166,35,.45); }
+.beta-btn:active { transform: translateY(1px); }
+.beta-btn:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .beta-box { animation: none; }
+  .beta-scan::after { animation: none; }
+  .beta-overlay { transition: none; }
+}
