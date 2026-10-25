@@ -11,7 +11,7 @@
 <meta property="og:type" content="website">
 <meta property="og:image" content="/assets/caps-og.png">
 <link rel="icon" type="image/png" href="/assets/favicon.png">
-<link rel="stylesheet" href="/assets/style.css?v=202610242236">
+<link rel="stylesheet" href="/assets/style.css?v=202610251224">
 </head>
 <body>
 <canvas id="bgfx" aria-hidden="true"></canvas>
@@ -123,27 +123,39 @@ addnode=caps.undergroundroots.ca</code></pre>
 
   <section id="downloads" class="band alt">
     <h2><span class="num">04</span> Downloads</h2>
-    <p class="lead">CAPS is open source. Build from source on any platform, or grab a prebuilt Linux node below.</p>
+    <p class="lead">CAPS is open source. Prebuilt nodes for Linux, Windows and macOS — or build it yourself.</p>
 
     <div class="dl-grid">
+      <a class="dl" href="https://github.com/ShaeOJ/caps-core/releases/download/v1.1.0/caps-1.1.0-linux-x86_64.tar.gz">
+        <div class="dl-ico">🐧</div>
+        <div><h3>Linux x86_64</h3><p><code>capsd</code>, <code>caps-cli</code>, <code>caps-tx</code>, <code>caps-wallet</code> — stripped.</p><span class="dl-meta">caps-1.1.0-linux-x86_64.tar.gz</span></div>
+      </a>
+      <a class="dl" href="https://github.com/ShaeOJ/caps-core/releases/download/v1.1.0/caps-1.1.0-win64.zip">
+        <div class="dl-ico">🪟</div>
+        <div><h3>Windows x86_64</h3><p>Same four tools as <code>.exe</code>. Unsigned, so SmartScreen will warn — verify the checksum.</p><span class="dl-meta">caps-1.1.0-win64.zip</span></div>
+      </a>
+      <a class="dl" href="https://github.com/ShaeOJ/caps-core/releases/download/v1.1.0/caps-1.1.0-macos-arm64.tar.gz">
+        <div class="dl-ico">🍎</div>
+        <div><h3>macOS (Apple Silicon)</h3><p>arm64 build. Unsigned — see <code>MACOS_FIRST_RUN.txt</code> inside.</p><span class="dl-meta">caps-1.1.0-macos-arm64.tar.gz</span></div>
+      </a>
+      <a class="dl" href="https://github.com/ShaeOJ/caps-core/releases/download/v1.1.0/caps-1.1.0-macos-x86_64.tar.gz">
+        <div class="dl-ico">🍎</div>
+        <div><h3>macOS (Intel)</h3><p>x86_64 build. Unsigned — see <code>MACOS_FIRST_RUN.txt</code> inside.</p><span class="dl-meta">caps-1.1.0-macos-x86_64.tar.gz</span></div>
+      </a>
+      <a class="dl" href="https://github.com/ShaeOJ/caps-core/releases/download/v1.1.0/SHA256SUMS.txt">
+        <div class="dl-ico">🔏</div>
+        <div><h3>Checksums</h3><p>Verify every download with <code>sha256sum -c SHA256SUMS.txt</code>.</p><span class="dl-meta">SHA256SUMS.txt</span></div>
+      </a>
       <a class="dl" href="https://github.com/ShaeOJ/caps-core">
         <div class="dl-ico">💻</div>
-        <div><h3>Source code</h3><p>Build from source — Linux, macOS, Windows. Branch <code>caps-rebrand</code>.</p><span class="dl-meta">github.com/ShaeOJ/caps-core</span></div>
-      </a>
-      <a class="dl" href="/downloads/caps-v1.0.0-linux-x86_64.tar.gz">
-        <div class="dl-ico">🐧</div>
-        <div><h3>Linux x86_64 node</h3><p><code>capsd</code>, <code>caps-cli</code>, <code>caps-tx</code>, <code>caps-wallet</code> (v1.0.0, stripped).</p><span class="dl-meta" id="dl-size">caps-v1.0.0-linux-x86_64.tar.gz</span></div>
-      </a>
-      <a class="dl" href="/downloads/SHA256SUMS.txt">
-        <div class="dl-ico">🔏</div>
-        <div><h3>Checksums</h3><p>Verify your download with <code>sha256sum -c SHA256SUMS.txt</code>.</p><span class="dl-meta">SHA256SUMS.txt</span></div>
+        <div><h3>Source code</h3><p>Build it yourself on any platform. Releases are built in public CI from a tagged commit.</p><span class="dl-meta">github.com/ShaeOJ/caps-core</span></div>
       </a>
       <a class="dl" href="/whitepaper/">
         <div class="dl-ico">📄</div>
         <div><h3>White paper</h3><p>Design, consensus, supply and an honest account of the limitations.</p><span class="dl-meta">v1.0 · web · text · markdown</span></div>
       </a>
     </div>
-    <p class="note">Windows and macOS builds: compile from source for now (standard Bitcoin-style build). Verify every binary against the published checksum before running it.</p>
+    <p class="note"><b>Running 1.0.0? Please upgrade.</b> 1.1.0 fixes a bug where a node could stop producing valid blocks once the emergency difficulty reset engaged. Validation is unchanged, so this is not a fork — but 1.0.0 miners can stall the chain. Binaries are unsigned, so Windows SmartScreen and macOS Gatekeeper will warn; verify the SHA-256 before running.</p>
   </section>
 
 </main>
@@ -157,7 +169,7 @@ addnode=caps.undergroundroots.ca</code></pre>
   </div>
   <p>CAPS · a community project of <a href="https://undergroundroots.ca">undergroundroots</a>. Not an investment — a wasteland currency you actually use.</p>
 </footer>
-<script src="/assets/bgfx.js?v=202610242236" defer></script>
-<script src="/assets/beta-notice.js?v=202610242236" defer></script>
+<script src="/assets/bgfx.js?v=202610251224" defer></script>
+<script src="/assets/beta-notice.js?v=202610251224" defer></script>
 </body>
 </html>

@@ -9,8 +9,8 @@
 <meta property="og:description" content="Design, consensus, supply, and an honest account of CAPS's security limitations.">
 <meta property="og:image" content="/assets/caps-og.png">
 <link rel="icon" type="image/png" href="/assets/favicon.png">
-<link rel="stylesheet" href="/assets/style.css?v=202610242236">
-<link rel="stylesheet" href="/assets/paper.css?v=202610242236">
+<link rel="stylesheet" href="/assets/style.css?v=202610250439">
+<link rel="stylesheet" href="/assets/paper.css?v=202610250439">
 </head><body>
 <canvas id="bgfx" aria-hidden="true"></canvas>
 <div class="scanlines" aria-hidden="true"></div>
@@ -47,12 +47,12 @@
 <li><a href="#appendix-c-verifying-what-you-run">Appendix C — Verifying what you run</a></li></ul></aside>
   <article>
 <h1>CAPS — A Wasteland Community Currency</h1>
-<p><strong>White paper · version 1.0</strong> Last verified at <strong>block height 649</strong>, 24 October 2026.</p>
+<p><strong>White paper · version 1.0</strong> Last verified at <strong>block height 907</strong>, 25 October 2026.</p>
 <p>Website: <a href="https://caps-core.undergroundroots.ca">caps-core.undergroundroots.ca</a> · Explorer: <a href="https://caps.undergroundroots.ca">caps.undergroundroots.ca</a> Wallet: <a href="https://wallet.undergroundroots.ca">wallet.undergroundroots.ca</a> · Source: <a href="https://github.com/ShaeOJ/caps-core">github.com/ShaeOJ/caps-core</a></p>
 <hr>
 <h2 id="abstract">Abstract</h2>
 <p>CAPS is a small SHA-256d proof-of-work cryptocurrency with a post-apocalyptic bottle-cap theme. It exists so that an ordinary person can run an entire crypto stack end to end — mine a block, run a full node, read an explorer, and hold their own keys — on a chain small enough to actually understand.</p>
-<p>CAPS is <strong>not an investment</strong>, has no market, and makes no promises about price. Two facts are stated here rather than buried: block 1 contains a <strong>470,000 CAPS premine</strong>, which is about <strong>93.6% of all coins currently in existence</strong> (though only ~2.2% of the eventual 21,000,000 maximum); and the network is currently <strong>tiny and centralised</strong> — roughly 23 MH/s, essentially all of it from one operator. A single modern ASIC is millions of times that hashrate. Anyone evaluating CAPS should read Section 7 before anything else.</p>
+<p>CAPS is <strong>not an investment</strong>, has no market, and makes no promises about price. Two facts are stated here rather than buried: block 1 contains a <strong>470,000 CAPS premine</strong>, which is about <strong>91.2% of all coins currently in existence</strong> (though only ~2.24% of the eventual 21,000,000 maximum); and the network is currently <strong>tiny and centralised</strong> — roughly 22 MH/s, essentially all of it from one operator. A single modern ASIC is millions of times that hashrate. Anyone evaluating CAPS should read Section 7 before anything else.</p>
 <hr>
 <h2 id="1-why-caps-exists">1. Why CAPS exists</h2>
 <p>Most coins ask you to buy them. CAPS asks you to run one.</p>
@@ -90,9 +90,9 @@
 </tbody></table></div>
 <h3 id="4-1-the-premine-without-spin">4.1 The premine, without spin</h3>
 <p>Block 1 contains <strong>470,000 CAPS</strong>.</p>
-<p>At height 649, total supply is <strong>502,400 CAPS</strong>. The premine is therefore:</p>
-<ul><li><strong>≈ 93.6% of all CAPS that currently exist</strong></li><li><strong>≈ 2.24% of the 21,000,000 eventual maximum</strong></li><li><strong>≈ 4.5% of the 10,500,000 that will be issued before the first halving</strong></li></ul>
-<p>Both the first number and the last two are true, and they tell different stories. The first is what a sceptic will calculate today, so it is printed here first. The chain is young — 649 blocks — so ordinary emission has not yet had time to dilute the initial allocation. That dilution is mechanical and predictable: at 50 CAPS per 5-minute block, roughly 14,400 CAPS are issued per day, and the premine falls below 50% of supply at around block 9,400 (~33 days of continuous mining from genesis).</p>
+<p>At height 907, total supply is <strong>515,300 CAPS</strong>. The premine is therefore:</p>
+<ul><li><strong>≈ 91.2% of all CAPS that currently exist</strong></li><li><strong>≈ 2.24% of the 21,000,000 eventual maximum</strong></li><li><strong>≈ 4.5% of the 10,500,000 that will be issued before the first halving</strong></li></ul>
+<p>Both the first number and the last two are true, and they tell different stories. The first is what a sceptic will calculate today, so it is printed here first. The chain is young — 907 blocks — so ordinary emission has not yet had time to dilute the initial allocation. That dilution is mechanical and predictable: at 50 CAPS per 5-minute block, roughly 14,400 CAPS are issued per day, and the premine falls below 50% of supply at around block 9,400 (~33 days of continuous mining from genesis).</p>
 <p><strong>What it is for:</strong> seeding the mining pool and funding community prizes, tips and perks. <strong>Where it is:</strong> held by the project operator in a known wallet. <strong>Commitment:</strong> material spends from the premine will be disclosed publicly.</p>
 <p>A reader who considers a 470,000-coin premine disqualifying is making a reasonable judgement, and this document is not going to argue them out of it.</p>
 <hr>
@@ -117,13 +117,13 @@ curl -s https://wallet.undergroundroots.ca/app.js | sha256sum   # must match</co
 <p>Its limits are described honestly in Section 7.4.</p>
 <hr>
 <h2 id="6-current-state-of-the-network">6. Current state of the network</h2>
-<p>Measured at height 649, 24 October 2026:</p>
+<p>Measured at height 907, 25 October 2026:</p>
 <div class="tw"><table><thead><tr><th>Metric</th><th>Value</th></tr></thead><tbody>
-<tr><td>Block height</td><td>649</td></tr>
-<tr><td>Total supply</td><td>502,400 CAPS</td></tr>
-<tr><td>Difficulty</td><td>~1.56</td></tr>
-<tr><td>Network hashrate</td><td>~23 MH/s</td></tr>
-<tr><td>Reachable peers (seed node)</td><td>2</td></tr>
+<tr><td>Block height</td><td>907</td></tr>
+<tr><td>Total supply</td><td>515,300 CAPS</td></tr>
+<tr><td>Difficulty</td><td>~1.53</td></tr>
+<tr><td>Network hashrate</td><td>~22 MH/s</td></tr>
+<tr><td>Reachable peers (seed node)</td><td>1</td></tr>
 <tr><td>Chain size on disk</td><td>&lt; 1 MB</td></tr>
 </tbody></table></div>
 <p>This is a young, small network. The numbers are printed so nobody has to guess.</p>
@@ -131,7 +131,7 @@ curl -s https://wallet.undergroundroots.ca/app.js | sha256sum   # must match</co
 <h2 id="7-security-model-and-honest-limitations">7. Security model and honest limitations</h2>
 <p>This is the most important section of this document.</p>
 <h3 id="7-1-proof-of-work-security-is-negligible">7.1 Proof-of-work security is negligible</h3>
-<p>CAPS network hashrate is approximately <strong>23 MH/s</strong>. A single modern SHA-256 ASIC — for example an Antminer S19 at ~100 TH/s — is roughly <strong>4.2 million times</strong> the entire CAPS network.</p>
+<p>CAPS network hashrate is approximately <strong>22 MH/s</strong>. A single modern SHA-256 ASIC — for example an Antminer S19 at ~100 TH/s — is roughly <strong>4.5 million times</strong> the entire CAPS network.</p>
 <p>The consequence is unambiguous: <strong>anyone with one second-hand miner, or a few dollars of rented hashrate, can reorganise the CAPS chain at will.</strong> CAPS does not have meaningful proof-of-work security in absolute terms and does not claim to. Any statement that CAPS is &quot;secured by SHA-256 like Bitcoin&quot; would be technically true about the algorithm and dangerously misleading about the security, and is not made here.</p>
 <h3 id="7-2-why-that-is-survivable-today-and-what-would-change-it">7.2 Why that is survivable today, and what would change it</h3>
 <p>Double-spend attacks are economically motivated: an attacker reorganises a chain to reverse a payment they have already converted into something else. CAPS has no exchange, no market and no liquid off-ramp. There is, at present, nothing to steal. The realistic threat is <strong>vandalism</strong> — someone reorganising the chain to prove they can — which is disruptive but not profitable.</p>
@@ -217,7 +217,7 @@ addnode=caps.undergroundroots.ca</code></pre>
 <p><strong>Node binaries:</strong> download <code>SHA256SUMS.txt</code> from <a href="https://caps-core.undergroundroots.ca">caps-core.undergroundroots.ca</a> and run <code>sha256sum -c SHA256SUMS.txt</code>.</p>
 <p><strong>Web wallet:</strong> see Section 5.4. A matching hash proves the served code is the published source. A mismatch means <strong>do not enter your seed phrase</strong>.</p>
 <hr>
-<p><em>CAPS is a community project of undergroundroots. It is not an investment, and nothing in this document is financial advice. All figures were verified at block height 649 on 24 October 2026 and will drift as the chain grows.</em></p>
+<p><em>CAPS is a community project of undergroundroots. It is not an investment, and nothing in this document is financial advice. All figures were verified at block height 907 on 25 October 2026 and will drift as the chain grows.</em></p>
   </article>
 </main>
 
@@ -231,6 +231,6 @@ addnode=caps.undergroundroots.ca</code></pre>
   </div>
   <p>CAPS &middot; a community project of <a href="https://undergroundroots.ca">undergroundroots</a>. Not an investment &mdash; a wasteland currency you actually use.</p>
 </footer>
-<script src="/assets/bgfx.js?v=202610242236" defer></script>
-<script src="/assets/beta-notice.js?v=202610242236" defer></script>
+<script src="/assets/bgfx.js?v=202610250439" defer></script>
+<script src="/assets/beta-notice.js?v=202610250439" defer></script>
 </body></html>
