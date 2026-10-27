@@ -1,7 +1,7 @@
 # CAPS — A Wasteland Community Currency
 
-**White paper · version 1.0**
-Last verified at **block height 907**, 25 October 2026.
+**White paper · version 1.1**
+Last verified at **block height 1,881**, 27 October 2026.
 
 Website: caps-core.undergroundroots.ca · Explorer: caps.undergroundroots.ca
 Wallet: wallet.undergroundroots.ca · Source: github.com/ShaeOJ/caps-core
@@ -17,9 +17,9 @@ hold their own keys — on a chain small enough to actually understand.
 
 CAPS is **not an investment**, has no market, and makes no promises about
 price. Two facts are stated here rather than buried: block 1 contains a
-**470,000 CAPS premine**, which is about **91.2% of all coins currently in
+**470,000 CAPS premine**, which is about **83.3% of all coins currently in
 existence** (though only ~2.24% of the eventual 21,000,000 maximum); and the
-network is currently **tiny and centralised** — roughly 22 MH/s, essentially
+network is currently **tiny and centralised** — roughly 100 MH/s, essentially
 all of it from one operator. A single modern ASIC is millions of times that
 hashrate. Anyone evaluating CAPS should read Section 7 before anything else.
 
@@ -128,16 +128,16 @@ chain.
 
 Block 1 contains **470,000 CAPS**.
 
-At height 907, total supply is **515,300 CAPS**. The premine is therefore:
+At height 1,881, total supply is **564,000 CAPS**. The premine is therefore:
 
-- **≈ 91.2% of all CAPS that currently exist**
+- **≈ 83.3% of all CAPS that currently exist**
 - **≈ 2.24% of the 21,000,000 eventual maximum**
 - **≈ 4.5% of the 10,500,000 that will be issued before the first halving**
 
 Both the first number and the last two are true, and they tell different
 stories. The first is what a sceptic will calculate today, so it is printed
-here first. The chain is young — 907 blocks — so ordinary emission has not yet
-had time to dilute the initial allocation. That dilution is mechanical and
+here first. The chain is young — 1,881 blocks — so ordinary emission has not
+yet had time to dilute the initial allocation. That dilution is mechanical and
 predictable: at 50 CAPS per 5-minute block, roughly 14,400 CAPS are issued per
 day, and the premine falls below 50% of supply at around block 9,400 (~33 days
 of continuous mining from genesis).
@@ -148,6 +148,33 @@ and perks. **Where it is:** held by the project operator in a known wallet.
 
 A reader who considers a 470,000-coin premine disqualifying is making a
 reasonable judgement, and this document is not going to argue them out of it.
+
+### 4.2 Planned upgrade: a longer, four-year halving
+
+A consensus upgrade is **planned but not yet active**. It **doubles the halving
+interval from 210,000 to 420,000 blocks**, stretching each emission era from
+roughly two years to roughly four. The block reward is unchanged at 50 CAPS, so
+the first halving (50 → 25 CAPS) moves from block 210,000 to block 420,000.
+
+Because the maximum supply is nothing more than the sum of every block reward,
+doubling the interval **doubles the eventual maximum from 21,000,000 to
+42,000,000 CAPS.** The amount issued before the first halving likewise rises
+from 10,500,000 to 21,000,000 CAPS, and the premine's share of the eventual
+maximum falls to about **1.12%** (470,000 of 42,000,000).
+
+The point that matters most: **this is a forward-only change that requires no
+new genesis block.** Every CAPS mined so far — including the block 1 premine —
+is preserved exactly; balances, transaction history and addresses are all
+untouched. A new genesis would mean a brand-new chain starting from zero and
+would discard every existing coin; that is explicitly *not* what this is.
+
+The old and new rules are identical for every block up to height 210,000, where
+the first halving would otherwise occur, and the chain is years away from that
+height. Nothing already on the chain changes. The upgrade is a **hard fork**:
+every node operator, the pool and all miners must run an upgraded binary
+**before block 210,000** — the last height at which the two schedules still
+agree. It will be announced with reasoning and lead time (Section 8); no
+activation date is set yet.
 
 ---
 
@@ -210,14 +237,14 @@ Its limits are described honestly in Section 7.4.
 
 ## 6. Current state of the network
 
-Measured at height 907, 25 October 2026:
+Measured at height 1,881, 27 October 2026:
 
 | Metric | Value |
 |---|---|
-| Block height | 907 |
-| Total supply | 515,300 CAPS |
-| Difficulty | ~1.53 |
-| Network hashrate | ~22 MH/s |
+| Block height | 1,881 |
+| Total supply | 564,000 CAPS |
+| Difficulty | ~6.93 |
+| Network hashrate | ~100 MH/s |
 | Reachable peers (seed node) | 1 |
 | Chain size on disk | < 1 MB |
 
@@ -232,8 +259,8 @@ This is the most important section of this document.
 
 ### 7.1 Proof-of-work security is negligible
 
-CAPS network hashrate is approximately **22 MH/s**. A single modern SHA-256
-ASIC — for example an Antminer S19 at ~100 TH/s — is roughly **4.5 million
+CAPS network hashrate is approximately **100 MH/s**. A single modern SHA-256
+ASIC — for example an Antminer S19 at ~100 TH/s — is roughly **1.0 million
 times** the entire CAPS network.
 
 The consequence is unambiguous: **anyone with one second-hand miner, or a few
@@ -321,9 +348,9 @@ If the operator disappears, CAPS does not automatically die — but it will only
 continue if other people are already running nodes. That is the honest answer,
 and it is another reason Section 7.3 matters.
 
-Consensus changes, if any are ever needed, will be announced publicly with the
-reasoning and lead time, and will require node operators to upgrade
-voluntarily.
+Consensus changes — such as the planned longer halving schedule described in
+Section 4.2 — will be announced publicly with the reasoning and lead time, and
+will require node operators to upgrade voluntarily.
 
 ---
 
@@ -352,6 +379,9 @@ carries no dates.
 - **Independent miners and a second pool**, so the current pool is not a
   chokepoint and Section 7.3 stops being true
 - Hardware-wallet / offline signing support
+- **A longer, four-year halving schedule** (420,000-block interval), a planned
+  hard fork that stretches emission and raises the eventual maximum to
+  42,000,000 CAPS while preserving every coin already mined — see Section 4.2
 
 ### Long term — resilience
 - Node diversity across operators and locations
@@ -420,6 +450,10 @@ hardware.
 | Coinbase maturity | 50 blocks | 50 blocks |
 | Wallet derivation path | `m/84'/0'/0'/{0,1}/i` (BIP84, P2WPKH) | same |
 
+These are the parameters of the chain as it runs today. A planned hard fork
+(Section 4.2) will change the halving interval to 420,000 blocks and the
+maximum supply to 42,000,000 CAPS; it is not yet active.
+
 ## Appendix B — Repositories
 
 | Component | Repository |
@@ -440,4 +474,4 @@ published source. A mismatch means **do not enter your seed phrase**.
 
 *CAPS is a community project of undergroundroots. It is not an investment, and
 nothing in this document is financial advice. All figures were verified at
-block height 907 on 25 October 2026 and will drift as the chain grows.*
+block height 1,881 on 27 October 2026 and will drift as the chain grows.*

@@ -107,9 +107,9 @@ page = f'''<!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
-<title>CAPS White Paper v1.0</title>
+<title>CAPS White Paper v1.1</title>
 <meta name="description" content="The CAPS white paper: design, consensus, supply and emission, the premine stated plainly, and an honest account of the network's security limitations.">
-<meta property="og:title" content="CAPS White Paper v1.0">
+<meta property="og:title" content="CAPS White Paper v1.1">
 <meta property="og:description" content="Design, consensus, supply, and an honest account of CAPS's security limitations.">
 <meta property="og:image" content="/assets/caps-og.png">
 <link rel="icon" type="image/png" href="/assets/favicon.png">
@@ -132,8 +132,8 @@ page = f'''<!doctype html>
 
 <main class="paper">
   <div class="paper-actions">
-    <a class="btn" href="/whitepaper/CAPS_whitepaper_v1.0.txt">Plain text &#8595;</a>
-    <a class="btn" href="/whitepaper/CAPS_whitepaper_v1.0.md">Markdown &#8595;</a>
+    <a class="btn" href="/whitepaper/CAPS_whitepaper_v1.1.txt">Plain text &#8595;</a>
+    <a class="btn" href="/whitepaper/CAPS_whitepaper_v1.1.md">Markdown &#8595;</a>
   </div>
   <aside class="toc"><h2>Contents</h2><ul>{nav}</ul></aside>
   <article>

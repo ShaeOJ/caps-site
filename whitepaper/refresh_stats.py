@@ -171,7 +171,7 @@ def main():
         print(f"[refresh] implausible readings {s}; refusing to publish", flush=True)
         return 1
 
-    src = os.path.join(REPO, "CAPS_whitepaper_v1.0.md")
+    src = os.path.join(REPO, "CAPS_whitepaper_v1.1.md")
     before = io.open(src, encoding="utf-8").read()
     after, hits = apply(before, s)
 
@@ -194,7 +194,7 @@ def main():
 
     io.open(src, "w", encoding="utf-8").write(after)
     # rebuild the other two formats from the markdown
-    txt = os.path.join(REPO, "CAPS_whitepaper_v1.0.txt")
+    txt = os.path.join(REPO, "CAPS_whitepaper_v1.1.txt")
     htm = os.path.join(REPO, "index.html")
     subprocess.run([sys.executable, os.path.join(HERE, "md2txt.py"), src, txt], check=True)
     t = io.open(txt, encoding="utf-8", newline="").read().replace("**", "")
@@ -210,7 +210,7 @@ def main():
     subprocess.run(["scp", "-q", "-o", "BatchMode=yes", src, txt, htm, f"{VPS}:/tmp/"], check=True)
     subprocess.run(["ssh", "-o", "BatchMode=yes", VPS, "bash", "-s"], check=True, text=True,
         input=f"""set -e
-sudo -n cp /tmp/CAPS_whitepaper_v1.0.md /tmp/CAPS_whitepaper_v1.0.txt /tmp/index.html {WEBROOT}/
+sudo -n cp /tmp/CAPS_whitepaper_v1.1.md /tmp/CAPS_whitepaper_v1.1.txt /tmp/index.html {WEBROOT}/
 sudo -n chown www-data:www-data {WEBROOT}/*
 sudo -n chmod 644 {WEBROOT}/*
 """)
