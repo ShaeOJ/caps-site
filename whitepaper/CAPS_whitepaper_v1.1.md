@@ -1,7 +1,14 @@
-# CAPS — A Wasteland Community Currency
+# BTLCAP — A Wasteland Community Currency
 
 **White paper · version 1.1**
-Last verified at **block height 1,881**, 27 October 2026.
+Last verified at **block height 3,573**, 1 November 2026.
+
+> **Rename in progress — CAPS is becoming BTLCAP.** The ticker and name are
+> changing from *CAPS* to *BTLCAP* (to avoid a clash with an unrelated project),
+> along with the address spelling (`caps1…`/`C…` → `btlcap1…`/`B…`). This is a
+> **rebrand plus a forward-only supply upgrade, not a relaunch** — the same
+> chain, the same blocks, and every coin already mined carry over untouched. On
+> the wire and on disk the software, ports and config keys stay `caps*`.
 
 Website: caps-core.undergroundroots.ca · Explorer: caps.undergroundroots.ca
 Wallet: wallet.undergroundroots.ca · Source: github.com/ShaeOJ/caps-core
@@ -10,31 +17,31 @@ Wallet: wallet.undergroundroots.ca · Source: github.com/ShaeOJ/caps-core
 
 ## Abstract
 
-CAPS is a small SHA-256d proof-of-work cryptocurrency with a post-apocalyptic
+BTLCAP is a small SHA-256d proof-of-work cryptocurrency with a post-apocalyptic
 bottle-cap theme. It exists so that an ordinary person can run an entire
 crypto stack end to end — mine a block, run a full node, read an explorer, and
 hold their own keys — on a chain small enough to actually understand.
 
-CAPS is **not an investment**, has no market, and makes no promises about
+BTLCAP is **not an investment**, has no market, and makes no promises about
 price. Two facts are stated here rather than buried: block 1 contains a
-**470,000 CAPS premine**, which is about **83.3% of all coins currently in
-existence** (though only ~2.24% of the eventual 21,000,000 maximum); and the
-network is currently **tiny and centralised** — roughly 100 MH/s, essentially
+**470,000 BTLCAP premine**, which is about **72.5% of all coins currently in
+existence** (though only ~0.11% of the eventual 420,470,000 maximum); and the
+network is currently **tiny and centralised** — roughly 3.0 TH/s, essentially
 all of it from one operator. A single modern ASIC is millions of times that
-hashrate. Anyone evaluating CAPS should read Section 7 before anything else.
+hashrate. Anyone evaluating BTLCAP should read Section 7 before anything else.
 
 ---
 
-## 1. Why CAPS exists
+## 1. Why BTLCAP exists
 
-Most coins ask you to buy them. CAPS asks you to run one.
+Most coins ask you to buy them. BTLCAP asks you to run one.
 
 Learning how a blockchain actually works is harder than it should be. On large
 chains you will never find a block, running a node is a spectator sport, and
 the tooling hides the mechanics behind an exchange account. The useful parts —
 the parts that teach you something — are only visible at small scale.
 
-CAPS is deliberately small. A hobby ASIC, or even a CPU, can find blocks. A
+BTLCAP is deliberately small. A hobby ASIC, or even a CPU, can find blocks. A
 full node syncs in seconds. The pool, explorer and wallet are all open source
 and documented. Nothing requires permission from anyone.
 
@@ -49,7 +56,7 @@ Three pillars:
 
 ---
 
-## 2. What CAPS is not
+## 2. What BTLCAP is not
 
 Stated plainly, because it is easier to be clear now than to be misunderstood
 later:
@@ -69,7 +76,7 @@ If you are looking for an asset that goes up, this is the wrong document.
 
 ## 3. Design and consensus
 
-CAPS is a fork of Bitcoin Silver, itself derived from Bitcoin Core (v24/25
+BTLCAP is a fork of Bitcoin Silver, itself derived from Bitcoin Core (v24/25
 era). The large majority of the codebase is unmodified upstream Bitcoin, which
 is a deliberate choice: the consensus-critical code is the part you least want
 a hobbyist rewriting. Changes are confined to chain parameters, the difficulty
@@ -77,10 +84,10 @@ algorithm, and branding.
 
 ### 3.1 Proof of work
 
-CAPS uses **SHA-256d** (double SHA-256) — the same proof-of-work function as
-Bitcoin. This makes CAPS mineable with ordinary SHA-256 ASIC hardware that
+BTLCAP uses **SHA-256d** (double SHA-256) — the same proof-of-work function as
+Bitcoin. This makes BTLCAP mineable with ordinary SHA-256 ASIC hardware that
 people already own, which is the point: the barrier to participation is a
-miner you may already have in a cupboard. It also means CAPS shares a hash
+miner you may already have in a cupboard. It also means BTLCAP shares a hash
 function with chains that have astronomically more hashrate, with the
 consequences described in Section 7.
 
@@ -88,7 +95,7 @@ consequences described in Section 7.
 
 Block interval targets **5 minutes (300 seconds)**.
 
-Rather than Bitcoin's 2016-block retarget, CAPS uses **LWMA** (Linearly
+Rather than Bitcoin's 2016-block retarget, BTLCAP uses **LWMA** (Linearly
 Weighted Moving Average) with a window of **N = 96 blocks**, recalculated
 every block, with solve times clamped at 20× the target.
 
@@ -98,7 +105,7 @@ capacity. Under Bitcoin's retarget, a big miner leaving would strand the chain
 at a difficulty nobody could meet, potentially for days. A per-block weighted
 average tracks hashrate closely enough to keep blocks flowing.
 
-This behaves as intended in practice: when CAPS first passed the N=96 window,
+This behaves as intended in practice: when BTLCAP first passed the N=96 window,
 difficulty ramped by roughly 67× to match the hashrate that had arrived.
 
 As a backstop, if no block is found for **60 minutes** (12× the target
@@ -107,8 +114,11 @@ chain.
 
 ### 3.3 Addresses
 
-- **bech32 (native segwit):** `caps1…` — the default, used by the web wallet
-- **Legacy P2PKH:** addresses beginning with `C`
+- **bech32 (native segwit):** `btlcap1…` — the default, used by the web wallet
+- **Legacy P2PKH:** addresses beginning with `B`
+- During the rename the live network still issues the old `caps1…` / `C…`
+  format; the new spelling activates at the coordinated cutover (Section 4.2).
+  The keys and coins are identical in both — only the encoding changes.
 - Full version bytes in Appendix A.
 
 ---
@@ -117,30 +127,30 @@ chain.
 
 | Parameter | Value |
 |---|---|
-| Block reward | 50 CAPS |
+| Block reward | 500 BTLCAP |
 | Block time | 5 minutes |
-| Halving interval | 210,000 blocks (~2 years) |
-| Maximum supply | 21,000,000 CAPS |
+| Halving interval | 420,000 blocks (~4 years) |
+| Maximum supply | ~420,470,000 BTLCAP (420,000,000 mined + 470,000 premine) |
 | Coinbase maturity | 50 blocks |
-| Premine | 470,000 CAPS in block 1 |
+| Premine | 470,000 BTLCAP in block 1 |
 
 ### 4.1 The premine, without spin
 
-Block 1 contains **470,000 CAPS**.
+Block 1 contains **470,000 BTLCAP**.
 
-At height 1,881, total supply is **564,000 CAPS**. The premine is therefore:
+At height 3,573, total supply is **648,600 BTLCAP**. The premine is therefore:
 
-- **≈ 83.3% of all CAPS that currently exist**
-- **≈ 2.24% of the 21,000,000 eventual maximum**
-- **≈ 4.5% of the 10,500,000 that will be issued before the first halving**
+- **≈ 72.5% of all BTLCAP that currently exist**
+- **≈ 0.11% of the 420,470,000 eventual maximum**
+- **≈ 0.22% of the 210,000,000 that will be issued before the first halving**
 
 Both the first number and the last two are true, and they tell different
 stories. The first is what a sceptic will calculate today, so it is printed
-here first. The chain is young — 1,881 blocks — so ordinary emission has not
+here first. The chain is young — 3,573 blocks — so ordinary emission has not
 yet had time to dilute the initial allocation. That dilution is mechanical and
-predictable: at 50 CAPS per 5-minute block, roughly 14,400 CAPS are issued per
-day, and the premine falls below 50% of supply at around block 9,400 (~33 days
-of continuous mining from genesis).
+predictable: at 500 BTLCAP per 5-minute block, roughly 144,000 BTLCAP are
+issued per day, and the premine falls below 50% of supply within a few days of
+continuous mining.
 
 **What it is for:** seeding the mining pool and funding community prizes, tips
 and perks. **Where it is:** held by the project operator in a known wallet.
@@ -149,32 +159,39 @@ and perks. **Where it is:** held by the project operator in a known wallet.
 A reader who considers a 470,000-coin premine disqualifying is making a
 reasonable judgement, and this document is not going to argue them out of it.
 
-### 4.2 Planned upgrade: a longer, four-year halving
+### 4.2 The rename + supply upgrade (in progress)
 
-A consensus upgrade is **planned but not yet active**. It **doubles the halving
-interval from 210,000 to 420,000 blocks**, stretching each emission era from
-roughly two years to roughly four. The block reward is unchanged at 50 CAPS, so
-the first halving (50 → 25 CAPS) moves from block 210,000 to block 420,000.
+A combined rename and consensus upgrade is **rolling out now**. Two things
+change together, in one coordinated cutover:
+
+1. **Rename CAPS → BTLCAP.** The name, ticker and bottle-cap logo change, and
+   addresses are re-spelled from `caps1…`/`C…` to `btlcap1…`/`B…`. This is a
+   display/encoding change: the keys, the coins and the chain are untouched.
+2. **A 500-reward / four-year-halving emission.** The block reward is **500
+   BTLCAP** and the subsidy halves every **420,000 blocks** (~4 years at 5-minute
+   spacing), so the first halving (500 → 250 BTLCAP) lands at block 420,000.
 
 Because the maximum supply is nothing more than the sum of every block reward,
-doubling the interval **doubles the eventual maximum from 21,000,000 to
-42,000,000 CAPS.** The amount issued before the first halving likewise rises
-from 10,500,000 to 21,000,000 CAPS, and the premine's share of the eventual
-maximum falls to about **1.12%** (470,000 of 42,000,000).
+this schedule tops out near **420,470,000 BTLCAP** (420,000,000 mined over all
+eras, plus the 470,000 premine). The amount issued before the first halving is
+**210,000,000 BTLCAP**, and the premine's share of the eventual maximum is about
+**0.11%** (470,000 of 420,470,000).
 
 The point that matters most: **this is a forward-only change that requires no
-new genesis block.** Every CAPS mined so far — including the block 1 premine —
-is preserved exactly; balances, transaction history and addresses are all
-untouched. A new genesis would mean a brand-new chain starting from zero and
-would discard every existing coin; that is explicitly *not* what this is.
+new genesis block.** Every coin mined so far — including the block 1 premine —
+is preserved exactly; balances, transaction history and keys are all untouched.
+A new genesis would mean a brand-new chain starting from zero and would discard
+every existing coin; that is explicitly *not* what this is.
 
-The old and new rules are identical for every block up to height 210,000, where
-the first halving would otherwise occur, and the chain is years away from that
-height. Nothing already on the chain changes. The upgrade is a **hard fork**:
-every node operator, the pool and all miners must run an upgraded binary
-**before block 210,000** — the last height at which the two schedules still
-agree. It will be announced with reasoning and lead time (Section 8); no
-activation date is set yet.
+The old and new emission rules are identical for every block up to height
+420,000, where the first halving occurs, and the chain is years away from that
+height. Nothing already on the chain changes. The emission change is a **hard
+fork**: every node operator, the pool and all miners must run an upgraded binary
+**before block 420,000** — the last height at which the two schedules still
+agree. The address re-spelling is not a consensus change at all (it cannot fork
+the chain); it is coordinated with the upgrade only so wallets, the pool and the
+explorer all switch together. It is announced with reasoning and lead time
+(Section 8).
 
 ---
 
@@ -187,19 +204,20 @@ Everything described here is live and open source.
 `capsd` / `caps-cli`, built from github.com/ShaeOJ/caps-core. Default P2P port
 **12566**, RPC **12567**. Linux x86_64 binaries with SHA-256 checksums are
 published on the website; Windows and macOS are currently build-from-source.
+(The on-disk tool names stay `caps*` through the rebrand.)
 
 ### 5.2 Mining pool
 
-A.S.I.C. Mining Pool (asicpool.space) runs CAPS in both **PROP**
+A.S.I.C. Mining Pool (asicpool.space) runs BTLCAP in both **PROP**
 (proportional) and **SOLO** modes at **0% fee**. SOLO rewards are paid
 directly to the miner's address in the block's coinbase — the pool never
 custodies them.
 
 - ASIC: `stratum+tcp://asicpool.space:8433`
 - CPU / low difficulty: `stratum+tcp://asicpool.space:8434`
-- Username: your CAPS address. Password: `x`.
+- Username: your BTLCAP address. Password: `x`.
 
-Running CAPS through a single pool is a centralisation risk, not a feature;
+Running BTLCAP through a single pool is a centralisation risk, not a feature;
 see Section 7.3.
 
 ### 5.3 Explorer
@@ -211,7 +229,7 @@ address balances and history, with a public `/ext/` API.
 
 A **non-custodial** browser wallet at wallet.undergroundroots.ca.
 
-- BIP39 mnemonic → BIP32 HD (BIP84, P2WPKH) using CAPS network parameters
+- BIP39 mnemonic → BIP32 HD (BIP84, P2WPKH) using BTLCAP network parameters
 - Keys are generated, encrypted and used **only in the browser**; the server
   never receives them
 - Seed encrypted at rest with scrypt (N=2¹⁷) → AES-GCM in IndexedDB
@@ -237,14 +255,14 @@ Its limits are described honestly in Section 7.4.
 
 ## 6. Current state of the network
 
-Measured at height 1,881, 27 October 2026:
+Measured at height 3,573, 1 November 2026:
 
 | Metric | Value |
 |---|---|
-| Block height | 1,881 |
-| Total supply | 564,000 CAPS |
-| Difficulty | ~6.93 |
-| Network hashrate | ~100 MH/s |
+| Block height | 3,573 |
+| Total supply | 648,600 BTLCAP |
+| Difficulty | ~213594.27 |
+| Network hashrate | ~3.0 TH/s |
 | Reachable peers (seed node) | 1 |
 | Chain size on disk | < 1 MB |
 
@@ -259,14 +277,14 @@ This is the most important section of this document.
 
 ### 7.1 Proof-of-work security is negligible
 
-CAPS network hashrate is approximately **100 MH/s**. A single modern SHA-256
-ASIC — for example an Antminer S19 at ~100 TH/s — is roughly **1.0 million
-times** the entire CAPS network.
+BTLCAP network hashrate is approximately **3.0 TH/s**. A single modern SHA-256
+ASIC — for example an Antminer S19 at ~100 TH/s — is roughly **0.0 million
+times** the entire BTLCAP network.
 
 The consequence is unambiguous: **anyone with one second-hand miner, or a few
-dollars of rented hashrate, can reorganise the CAPS chain at will.** CAPS does
-not have meaningful proof-of-work security in absolute terms and does not
-claim to. Any statement that CAPS is "secured by SHA-256 like Bitcoin" would
+dollars of rented hashrate, can reorganise the BTLCAP chain at will.** BTLCAP
+does not have meaningful proof-of-work security in absolute terms and does not
+claim to. Any statement that BTLCAP is "secured by SHA-256 like Bitcoin" would
 be technically true about the algorithm and dangerously misleading about the
 security, and is not made here.
 
@@ -274,16 +292,16 @@ security, and is not made here.
 
 Double-spend attacks are economically motivated: an attacker reorganises a
 chain to reverse a payment they have already converted into something else.
-CAPS has no exchange, no market and no liquid off-ramp. There is, at present,
+BTLCAP has no exchange, no market and no liquid off-ramp. There is, at present,
 nothing to steal. The realistic threat is **vandalism** — someone reorganising
 the chain to prove they can — which is disruptive but not profitable.
 
 This is an argument about the *current* stakes, not a defence of weak
-security. If CAPS ever acquired a liquid market while hashrate remained this
+security. If BTLCAP ever acquired a liquid market while hashrate remained this
 low, the risk profile would change materially and this section would need
 rewriting before, not after.
 
-**Do not treat CAPS as a settlement layer for anything valuable.**
+**Do not treat BTLCAP as a settlement layer for anything valuable.**
 
 ### 7.3 Centralisation
 
@@ -294,7 +312,7 @@ Stated plainly:
   self-contained.
 - One person currently runs the node, the pool, the explorer and the wallet.
 
-This means CAPS today is closer to a well-documented single-operator system
+This means BTLCAP today is closer to a well-documented single-operator system
 than to a decentralised network. The most valuable contribution anyone can
 make is not buying anything — it is **running an independent node, or mining
 from somewhere else.**
@@ -330,7 +348,7 @@ See Section 8.
 ## 8. Governance and continuity
 
 There is no foundation, no governance token, no voting mechanism, and no
-treasury. CAPS is a project run by one person, which is stated here rather
+treasury. BTLCAP is a project run by one person, which is stated here rather
 than dressed up as decentralisation.
 
 What makes that survivable:
@@ -344,13 +362,13 @@ What makes that survivable:
 - **No infrastructure holds user funds.** The wallet is non-custodial and SOLO
   mining pays directly to the coinbase.
 
-If the operator disappears, CAPS does not automatically die — but it will only
+If the operator disappears, BTLCAP does not automatically die — but it will only
 continue if other people are already running nodes. That is the honest answer,
 and it is another reason Section 7.3 matters.
 
-Consensus changes — such as the planned longer halving schedule described in
-Section 4.2 — will be announced publicly with the reasoning and lead time, and
-will require node operators to upgrade voluntarily.
+Consensus changes — such as the 500-reward / four-year halving schedule
+described in Section 4.2 — will be announced publicly with the reasoning and
+lead time, and will require node operators to upgrade voluntarily.
 
 ---
 
@@ -366,7 +384,17 @@ carries no dates.
 - Non-custodial web wallet with reproducible builds
 - Public website with Linux node binaries and checksums
 
-### Near term — lower the barrier to running CAPS
+### In progress — the BTLCAP rebrand
+- **Rename CAPS → BTLCAP** across the site, wallets, explorer and pool — new
+  name, ticker and bottle-cap logo, display-only (chain and balances untouched)
+- **New `btlcap1…` / `B…` addresses** — same keys and coins, re-spelled encoding
+- **A 500-reward / 420,000-block (four-year) halving schedule** raising the
+  eventual maximum to ~420,470,000 BTLCAP, a forward-only hard fork that
+  preserves every coin already mined — see Section 4.2
+- **A refreshed caps-core front end** and a coordinated node + pool + wallet
+  cutover, then a tagged release for independent node operators
+
+### Near term — lower the barrier to running BTLCAP
 - **Windows and macOS node binaries** (currently Linux-only) — the single
   biggest accessibility gap
 - **A one-command node setup and published seed addresses.** At this size,
@@ -379,9 +407,6 @@ carries no dates.
 - **Independent miners and a second pool**, so the current pool is not a
   chokepoint and Section 7.3 stops being true
 - Hardware-wallet / offline signing support
-- **A longer, four-year halving schedule** (420,000-block interval), a planned
-  hard fork that stretches emission and raises the eventual maximum to
-  42,000,000 CAPS while preserving every coin already mined — see Section 4.2
 
 ### Long term — resilience
 - Node diversity across operators and locations
@@ -393,7 +418,7 @@ These are commitments, not omissions:
 - No exchange-listing promises, market making, or price targets
 - No presale, ICO, staking yields, or "rewards programmes"
 - No treasury raise and no governance token
-- No claim that CAPS is a store of value or a hedge against anything
+- No claim that BTLCAP is a store of value or a hedge against anything
 
 ---
 
@@ -403,8 +428,10 @@ These are commitments, not omissions:
 ```
 stratum+tcp://asicpool.space:8433   # ASIC
 stratum+tcp://asicpool.space:8434   # CPU / low difficulty
-username: <your caps1… address>     password: x
+username: <your address>            password: x
 ```
+Today the network still uses `caps1…` addresses; they become `btlcap1…` at the
+cutover (Section 4.2).
 
 **Run a node** — minimal `caps.conf`:
 ```
@@ -424,7 +451,7 @@ Start `capsd`, then check progress with `caps-cli getblockchaininfo`.
 
 **Read or fork the code** — github.com/ShaeOJ/caps-core
 
-The most useful thing you can do for CAPS is run a node and mine from your own
+The most useful thing you can do for BTLCAP is run a node and mine from your own
 hardware.
 
 ---
@@ -433,10 +460,10 @@ hardware.
 
 | Parameter | Mainnet | Regtest |
 |---|---|---|
-| bech32 HRP | `caps` | `capsrt` |
-| P2PKH version byte | `0x1C` (addresses start `C`) | `0x6F` (111) |
-| P2SH version byte | `0x1D` | `0xC4` (196) |
-| WIF / secret key | `0x9C` | `0xEF` (239) |
+| bech32 HRP | `btlcap` | `btlcaprt` |
+| P2PKH version byte | `0x19` (addresses start `B`) | `0x6F` (111) |
+| P2SH version byte | `0x32` | `0xC4` (196) |
+| WIF / secret key | `0x99` | `0xEF` (239) |
 | BIP32 xpub / xprv | `0x0488B21E` / `0x0488ADE4` | `0x043587CF` / `0x04358394` |
 | P2P port | 12566 | — |
 | RPC port | 12567 | — |
@@ -444,15 +471,17 @@ hardware.
 | Target block time | 300 s | 300 s |
 | Difficulty algorithm | LWMA, N = 96 | — |
 | Emergency difficulty reset | after 60 min without a block | — |
-| Block reward | 50 CAPS | 50 CAPS |
-| Halving interval | 210,000 blocks | 210,000 blocks |
-| Maximum supply | 21,000,000 CAPS | — |
+| Block reward | 500 BTLCAP | 500 BTLCAP |
+| Halving interval | 420,000 blocks | 420,000 blocks |
+| Maximum supply | ~420,470,000 BTLCAP | — |
 | Coinbase maturity | 50 blocks | 50 blocks |
 | Wallet derivation path | `m/84'/0'/0'/{0,1}/i` (BIP84, P2WPKH) | same |
 
-These are the parameters of the chain as it runs today. A planned hard fork
-(Section 4.2) will change the halving interval to 420,000 blocks and the
-maximum supply to 42,000,000 CAPS; it is not yet active.
+These are the parameters of the chain after the Section 4.2 upgrade. The
+address re-spelling and the 500-reward / 420,000-block halving roll out together
+at the cutover; until then the live network still uses the `caps` HRP, the
+`0x1C`/`C` P2PKH byte and the 50-reward / 210,000-block schedule. No coin already
+mined is affected by either change.
 
 ## Appendix B — Repositories
 
@@ -472,6 +501,7 @@ published source. A mismatch means **do not enter your seed phrase**.
 
 ---
 
-*CAPS is a community project of undergroundroots. It is not an investment, and
-nothing in this document is financial advice. All figures were verified at
-block height 1,881 on 27 October 2026 and will drift as the chain grows.*
+*BTLCAP (formerly CAPS) is a community project of undergroundroots. It is not an
+investment, and nothing in this document is financial advice. All figures were
+verified at block height 3,573 on 1 November 2026 and will drift as the chain
+grows.*

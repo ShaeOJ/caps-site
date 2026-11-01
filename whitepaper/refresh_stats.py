@@ -24,7 +24,7 @@ POOL_API  = "https://asicpool.space/api/pools/caps"
 VPS       = "vpsproxy"
 WEBROOT   = "/var/www/caps-core/whitepaper"
 PREMINE   = 470_000
-MAX_SUPPLY = 21_000_000
+MAX_SUPPLY = 420_470_000   # 420,000,000 mined + 470,000 premine (post-4.2 schedule)
 S19_HPS   = 100e12            # a representative modern SHA-256 ASIC
 EXPECTED_FIELDS = 17          # every tracked figure must be found (see main())
 
@@ -97,33 +97,33 @@ def apply(md, s):
         # abstract
         (r"about \*\*[\d.]+% of all coins currently in existence\*\*",
          f"about **{PCT}% of all coins currently in existence**"),
-        (r"only ~[\d.]+% of the eventual 21,000,000 maximum",
-         f"only ~{MAXPCT}% of the eventual 21,000,000 maximum"),
+        (r"only ~[\d.]+% of the eventual 420,470,000 maximum",
+         f"only ~{MAXPCT}% of the eventual 420,470,000 maximum"),
         (r"roughly [\d.]+ [kMGT]H/s, essentially all of it",
          f"roughly {HR}, essentially all of it"),
         # section 4.1
-        (r"At height [\d,]+, total supply is \*\*[\d,]+ CAPS\*\*",
-         f"At height {H}, total supply is **{SUP} CAPS**"),
-        (r"- \*\*≈ [\d.]+% of all CAPS that currently exist\*\*",
-         f"- **≈ {PCT}% of all CAPS that currently exist**"),
-        (r"- \*\*≈ [\d.]+% of the 21,000,000 eventual maximum\*\*",
-         f"- **≈ {MAXPCT}% of the 21,000,000 eventual maximum**"),
+        (r"At height [\d,]+, total supply is \*\*[\d,]+ BTLCAP\*\*",
+         f"At height {H}, total supply is **{SUP} BTLCAP**"),
+        (r"- \*\*≈ [\d.]+% of all BTLCAP that currently exist\*\*",
+         f"- **≈ {PCT}% of all BTLCAP that currently exist**"),
+        (r"- \*\*≈ [\d.]+% of the 420,470,000 eventual maximum\*\*",
+         f"- **≈ {MAXPCT}% of the 420,470,000 eventual maximum**"),
         (r"The chain is young — [\d,]+ blocks —",
          f"The chain is young — {H} blocks —"),
         # section 6 table
         (r"Measured at height [\d,]+, .*?:", f"Measured at height {H}, {DATE}:"),
         (r"\| Block height \| [\d,]+ \|", f"| Block height | {H} |"),
-        (r"\| Total supply \| [\d,]+ CAPS \|", f"| Total supply | {SUP} CAPS |"),
+        (r"\| Total supply \| [\d,]+ BTLCAP \|", f"| Total supply | {SUP} BTLCAP |"),
         (r"\| Difficulty \| ~[\d.]+ \|", f"| Difficulty | ~{s['diff']:.2f} |"),
         (r"\| Network hashrate \| ~[\d.]+ [kMGT]H/s \|",
          f"| Network hashrate | ~{HR} |"),
         (r"\| Reachable peers \(seed node\) \| \d+ \|",
          f"| Reachable peers (seed node) | {s['peers']} |"),
         # section 7.1
-        (r"CAPS network hashrate is approximately \*\*[\d.]+ [kMGT]H/s\*\*",
-         f"CAPS network hashrate is approximately **{HR}**"),
-        (r"is roughly \*\*[\d.]+ million\s+times\*\* the entire CAPS network",
-         f"is roughly **{MULT} times** the entire CAPS network"),
+        (r"BTLCAP network hashrate is approximately \*\*[\d.]+ [kMGT]H/s\*\*",
+         f"BTLCAP network hashrate is approximately **{HR}**"),
+        (r"is roughly \*\*[\d.]+ million\s+times\*\* the entire BTLCAP network",
+         f"is roughly **{MULT} times** the entire BTLCAP network"),
     ]
     # The markdown is hand-wrapped, and re-wrapping can move a line break into
     # the middle of any of these phrases. Match any whitespace (including a

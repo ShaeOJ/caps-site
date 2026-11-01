@@ -4,24 +4,61 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
-<title>CAPS — mine it, own it, trade it</title>
-<meta name="description" content="CAPS is a post-apocalyptic bottle-cap community currency you can mine, explore, and self-custody. SHA256d proof-of-work. Not an investment — value is real community use.">
-<meta property="og:title" content="CAPS — a wasteland community currency">
+<title>BTLCAP — mine it, own it, trade it</title>
+<meta name="description" content="BTLCAP (formerly CAPS) is a post-apocalyptic bottle-cap community currency you can mine, explore, and self-custody. SHA256d proof-of-work. Not an investment — value is real community use.">
+<meta property="og:title" content="BTLCAP — a wasteland community currency">
 <meta property="og:description" content="Mine it. Own it. Trade it. A SHA256d community coin you can run, mine, explore and self-custody.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="/assets/caps-og.png">
-<link rel="icon" type="image/png" href="/assets/favicon.png">
-<link rel="stylesheet" href="/assets/style.css?v=202610251224">
+<meta property="og:image" content="/assets/btlcap-og.webp">
+<link rel="icon" type="image/png" href="/assets/btlcap-favicon.png">
+<link rel="stylesheet" href="/assets/style.css?v=202611011140">
+<style>
+  /* transitional update banner */
+  .update-bar{position:sticky;top:0;z-index:50;display:flex;gap:.6rem;align-items:center;justify-content:center;
+    flex-wrap:wrap;padding:.5rem .9rem;font:600 .82rem/1.3 var(--mono,ui-monospace,monospace);
+    text-align:center;color:#ffe9c7;background:linear-gradient(90deg,#3a1414,#5a1d1d,#3a1414);
+    border-bottom:1px solid #7a2a2a;box-shadow:0 1px 0 rgba(0,0,0,.4)}
+  .update-bar b{color:#ff8d6b}
+  .update-bar a{color:#ffd27a;text-decoration:underline;white-space:nowrap}
+  .update-bar .pulse{display:inline-block;width:.55rem;height:.55rem;border-radius:50%;background:#ff8d6b;
+    box-shadow:0 0 0 0 rgba(255,141,107,.7);animation:ubp 2s infinite}
+  @keyframes ubp{0%{box-shadow:0 0 0 0 rgba(255,141,107,.6)}70%{box-shadow:0 0 0 .5rem rgba(255,141,107,0)}100%{box-shadow:0 0 0 0 rgba(255,141,107,0)}}
+  .brand .formerly,.hero .formerly{display:block;font:500 .62rem/1 var(--mono,monospace);letter-spacing:.18em;
+    opacity:.6;text-transform:uppercase;margin-top:.15rem}
+  /* roadmap timeline */
+  .road{list-style:none;margin:1.4rem 0 0;padding:0;display:grid;gap:.1rem}
+  .road li{position:relative;padding:.75rem 0 .75rem 2.1rem;border-left:2px solid #4a3326}
+  .road li::before{content:"";position:absolute;left:-.46rem;top:1rem;width:.8rem;height:.8rem;border-radius:50%;
+    background:#1a1410;border:2px solid #4a3326}
+  .road li.done::before{background:#5fbf6a;border-color:#5fbf6a}
+  .road li.active::before{background:#ff8d6b;border-color:#ff8d6b;box-shadow:0 0 0 .18rem rgba(255,141,107,.25)}
+  .road li.next::before{background:#1a1410;border-color:#c9a24a}
+  .road .ph{display:inline-block;font:700 .66rem/1 var(--mono,monospace);letter-spacing:.14em;text-transform:uppercase;
+    padding:.18rem .45rem;border-radius:.3rem;margin-right:.5rem;vertical-align:.08em}
+  .road li.done .ph{color:#bdebc2;background:rgba(95,191,106,.14)}
+  .road li.active .ph{color:#ffd0bf;background:rgba(255,141,107,.16)}
+  .road li.next .ph{color:#ecd59a;background:rgba(201,162,74,.14)}
+  .road h4{margin:.1rem 0 .25rem;font-size:1rem}
+  .road p{margin:0;opacity:.82;font-size:.92rem}
+  .muted{opacity:.6}
+</style>
 </head>
 <body>
 <canvas id="bgfx" aria-hidden="true"></canvas>
 <div class="scanlines" aria-hidden="true"></div>
 
+<div class="update-bar" role="status">
+  <span class="pulse" aria-hidden="true"></span>
+  <span><b>Rebrand in progress:</b> CAPS is becoming <b>BTLCAP</b> — new look, new ticker, a <b>420,000,000</b> supply schedule and <b>btlcap…</b> addresses are rolling out. Every existing balance and mined coin stays <b>fully spendable</b>.</span>
+  <a href="#roadmap">See the roadmap →</a>
+</div>
+
 <header class="site-nav">
-  <a class="brand" href="#top"><img src="/assets/caps-logo.png" alt="" width="34" height="34"><span>CAPS</span></a>
+  <a class="brand" href="#top"><img src="/assets/btlcap-logo.webp" alt="" width="34" height="34"><span>BTLCAP<span class="formerly">formerly CAPS</span></span></a>
   <nav>
     <a href="#about">About</a>
     <a href="#specs">Specs</a>
+    <a href="#roadmap">Roadmap</a>
     <a href="#start">Get started</a>
     <a href="#downloads">Downloads</a>
     <a href="/whitepaper/">White paper</a>
@@ -32,8 +69,8 @@
 <main id="top">
 
   <section class="hero">
-    <img class="hero-logo" src="/assets/caps-logo.png" alt="CAPS bottle-cap logo" width="200" height="200">
-    <h1>CAPS</h1>
+    <img class="hero-logo" src="/assets/btlcap-logo.webp" alt="BTLCAP bottle-cap logo" width="200" height="200">
+    <h1>BTLCAP<span class="formerly">formerly CAPS · same chain, same coins</span></h1>
     <p class="tag">Mine it. Own it. Trade it.</p>
     <p class="sub">A post-apocalyptic bottle-cap <b>community currency</b> you can mine, explore, and self-custody — for fun, for the community, and for learning how crypto really works.</p>
     <div class="cta">
@@ -42,12 +79,12 @@
       <a class="btn" href="https://caps.undergroundroots.ca">Explorer ↗</a>
       <a class="btn ghost" href="https://github.com/ShaeOJ/caps-core">Source ↗</a>
     </div>
-    <p class="honest">Honest by design: CAPS is <b>not pitched as an investment</b>. Its value is real community use — tips, prizes, and perks across the wasteland.</p>
+    <p class="honest">Honest by design: BTLCAP is <b>not pitched as an investment</b>. Its value is real community use — tips, prizes, and perks across the wasteland.</p>
   </section>
 
   <section id="about" class="band">
-    <h2><span class="num">01</span> What is CAPS?</h2>
-    <p class="lead">CAPS is a small, honest proof-of-work coin with three jobs:</p>
+    <h2><span class="num">01</span> What is BTLCAP?</h2>
+    <p class="lead">BTLCAP is a small, honest proof-of-work coin with three jobs:</p>
     <div class="pillars">
       <div class="card">
         <div class="ico">🍾</div>
@@ -65,7 +102,7 @@
         <p>Used for tips, prizes, and perks across the undergroundroots community. Value comes from being used, not from hype.</p>
       </div>
     </div>
-    <p class="note"><b>Transparency note:</b> block&nbsp;1 contains a 470,000&nbsp;CAPS premine (used to seed the pool and community). Every other block pays the standard 50&nbsp;CAPS reward. SHA256d proof-of-work, LWMA difficulty — the same battle-tested machinery as Bitcoin, just tuned for a community-scale coin.</p>
+    <p class="note"><b>Name note:</b> the coin is being renamed from <b>CAPS → BTLCAP</b> to avoid a clash with an unrelated project. It's a <b>rebrand, not a relaunch</b> — the same chain, the same blocks, and every coin you already hold carry straight over. Only the name, ticker, logo and address spelling change.</p>
   </section>
 
   <section id="specs" class="band alt">
@@ -75,33 +112,47 @@
       <tbody>
         <tr><th>Algorithm</th><td>SHA-256d (double SHA-256) proof-of-work</td></tr>
         <tr><th>Block time</th><td>5 minutes (300 s)</td></tr>
-        <tr><th>Block reward</th><td>50 CAPS</td></tr>
-        <tr><th>Halving</th><td>every 210,000 blocks (~2 years)</td></tr>
-        <tr><th>Max supply</th><td>21,000,000 CAPS</td></tr>
+        <tr><th>Block reward</th><td>500 BTLCAP</td></tr>
+        <tr><th>Halving</th><td>every 420,000 blocks (~4 years)</td></tr>
+        <tr><th>Max supply</th><td>~420,470,000 BTLCAP (420M mined + 470k premine)</td></tr>
         <tr><th>Coinbase maturity</th><td>50 blocks</td></tr>
         <tr><th>Difficulty</th><td>LWMA, per-block (window N = 96)</td></tr>
-        <tr><th>Premine</th><td>block 1 = 470,000 CAPS (community/pool seed)</td></tr>
-        <tr><th>Address format</th><td>bech32 <code>caps1…</code> · legacy <code>C…</code></td></tr>
+        <tr><th>Premine</th><td>block 1 = 470,000 BTLCAP (community/pool seed)</td></tr>
+        <tr><th>Address format</th><td>bech32 <code>btlcap1…</code> · legacy <code>B…</code> <span class="muted">(was <code>caps1…</code> / <code>C…</code> — see roadmap)</span></td></tr>
         <tr><th>P2P / RPC ports</th><td>12566 / 12567</td></tr>
-        <tr><th>Version</th><td>Caps Core v1.0.0</td></tr>
+        <tr><th>Ticker</th><td>BTLCAP</td></tr>
       </tbody>
     </table>
     </div>
-    <p class="note"><b>Planned upgrade:</b> a future hard fork will double the halving interval to <b>420,000&nbsp;blocks</b> (~4 years), stretching emission and raising the eventual maximum to <b>42,000,000&nbsp;CAPS</b>. It preserves every coin already mined — <b>no new genesis, nothing reissued</b> — and will be announced with lead time. Details in the <a href="/whitepaper/#4-2-planned-upgrade-a-longer-four-year-halving">white paper</a>.</p>
+    <p class="note"><b>Supply upgrade (in progress):</b> BTLCAP keeps the <b>500&nbsp;BTLCAP</b> block reward and halves every <b>420,000&nbsp;blocks</b> (~4&nbsp;years), for an eventual maximum near <b>420,470,000&nbsp;BTLCAP</b>. This is a forward-only consensus change — it <b>preserves every coin already mined</b>, needs <b>no new genesis</b> and reissues nothing. Details in the <a href="/whitepaper/">white paper</a>.</p>
   </section>
 
-  <section id="start" class="band">
-    <h2><span class="num">03</span> Get started</h2>
+  <section id="roadmap" class="band">
+    <h2><span class="num">03</span> Roadmap</h2>
+    <p class="lead">Where BTLCAP has been and what's landing next. Honest status — no promises dressed up as dates.</p>
+    <ol class="road">
+      <li class="done"><span class="ph">Done</span><h4>The full stack is live</h4><p>Coin → community pool → block explorer → non-custodial web wallet → this website. You can already mine, run a node, explore and self-custody today.</p></li>
+      <li class="active"><span class="ph">In progress</span><h4>BTLCAP rebrand</h4><p>New name, ticker and bottle-cap logo across the site, wallets, explorer and pool. Display only — the chain, your keys and your balances are untouched.</p></li>
+      <li class="active"><span class="ph">In progress</span><h4>420,000,000 supply schedule</h4><p>Forward-only upgrade to a 500-reward / 420,000-block-halving emission. No relaunch, no reissue — proven on an isolated copy of the live chain before any node is switched.</p></li>
+      <li class="active"><span class="ph">In progress</span><h4>New <code>btlcap…</code> addresses</h4><p>Addresses change spelling from <code>caps1…</code>/<code>C…</code> to <code>btlcap1…</code>/<code>B…</code>. Same keys, same coins — your funds stay spendable; only the receive-address text is re-published.</p></li>
+      <li class="next"><span class="ph">Next</span><h4>Front-end refresh</h4><p>A redesigned caps-core front end — cleaner layout, live chain stats, and the new wasteland look throughout.</p></li>
+      <li class="next"><span class="ph">Next</span><h4>Coordinated node + pool cutover</h4><p>A single short upgrade window moves the node, pool and wallet relay together, then the new release ships on GitHub for everyone running their own node.</p></li>
+    </ol>
+    <p class="note"><b>Right now:</b> the live network is still on the <code>caps…</code> address format while the upgrade is prepared. If you're mining today, keep using your <code>caps1…</code> address — this page and the wallet will switch to <code>btlcap1…</code> when the cutover completes.</p>
+  </section>
+
+  <section id="start" class="band alt">
+    <h2><span class="num">04</span> Get started</h2>
 
     <div class="step">
-      <h3>⛏️ Mine CAPS</h3>
-      <p>Point any SHA-256 miner at the community pool and get paid to your own CAPS address.</p>
+      <h3>⛏️ Mine BTLCAP</h3>
+      <p>Point any SHA-256 miner at the community pool and get paid to your own address.</p>
       <pre><code># ASIC miners
-stratum+tcp://asicpool.space:8433   user: &lt;your caps1 address&gt;   pass: x
+stratum+tcp://asicpool.space:8433   user: &lt;your address&gt;   pass: x
 
 # CPU / low-difficulty
-stratum+tcp://asicpool.space:8434   user: &lt;your caps1 address&gt;   pass: x</code></pre>
-      <p class="hint">Don't have an address yet? Create one in the <a href="https://wallet.undergroundroots.ca">web wallet</a> — your keys stay in your browser.</p>
+stratum+tcp://asicpool.space:8434   user: &lt;your address&gt;   pass: x</code></pre>
+      <p class="hint">Today the network uses <code>caps1…</code> addresses; they become <code>btlcap1…</code> after the cutover (see <a href="#roadmap">roadmap</a>). Don't have one yet? Create it in the <a href="https://wallet.undergroundroots.ca">web wallet</a> — your keys stay in your browser.</p>
     </div>
 
     <div class="step">
@@ -113,18 +164,18 @@ txindex=1
 rpcuser=choose_a_user
 rpcpassword=choose_a_strong_password
 addnode=caps.undergroundroots.ca</code></pre>
-      <p class="hint">Start it with <code>capsd</code> and check progress with <code>caps-cli getblockchaininfo</code>. Default P2P port is 12566.</p>
+      <p class="hint">Start it with <code>capsd</code> and check progress with <code>caps-cli getblockchaininfo</code>. Default P2P port is 12566. <span class="muted">(On-disk tool names stay <code>caps*</code> through the rebrand.)</span></p>
     </div>
 
     <div class="step">
       <h3>🔎 Explore &amp; 🔐 self-custody</h3>
-      <p>Watch the chain on the <a href="https://caps.undergroundroots.ca">block explorer</a>, and hold your own CAPS in the non-custodial <a href="https://wallet.undergroundroots.ca">web wallet</a> (keys are generated, encrypted, and used entirely in your browser).</p>
+      <p>Watch the chain on the <a href="https://caps.undergroundroots.ca">block explorer</a>, and hold your own BTLCAP in the non-custodial <a href="https://wallet.undergroundroots.ca">web wallet</a> (keys are generated, encrypted, and used entirely in your browser).</p>
     </div>
   </section>
 
-  <section id="downloads" class="band alt">
-    <h2><span class="num">04</span> Downloads</h2>
-    <p class="lead">CAPS is open source. Prebuilt nodes for Linux, Windows and macOS — or build it yourself.</p>
+  <section id="downloads" class="band">
+    <h2><span class="num">05</span> Downloads</h2>
+    <p class="lead">BTLCAP is open source. Prebuilt nodes for Linux, Windows and macOS — or build it yourself.</p>
 
     <div class="dl-grid">
       <a class="dl" href="https://github.com/ShaeOJ/caps-core/releases/download/v1.1.0/caps-1.1.0-linux-x86_64.tar.gz">
@@ -156,7 +207,7 @@ addnode=caps.undergroundroots.ca</code></pre>
         <div><h3>White paper</h3><p>Design, consensus, supply and an honest account of the limitations.</p><span class="dl-meta">v1.1 · web · text · markdown</span></div>
       </a>
     </div>
-    <p class="note"><b>Running 1.0.0? Please upgrade.</b> 1.1.0 fixes a bug where a node could stop producing valid blocks once the emergency difficulty reset engaged. Validation is unchanged, so this is not a fork — but 1.0.0 miners can stall the chain. Binaries are unsigned, so Windows SmartScreen and macOS Gatekeeper will warn; verify the SHA-256 before running.</p>
+    <p class="note"><b>A BTLCAP release is coming.</b> The 420M-supply / <code>btlcap…</code>-address build ships alongside the network cutover — until then the current <b>v1.1.0</b> binaries above are the right ones to run. Binaries are unsigned, so Windows SmartScreen and macOS Gatekeeper will warn; verify the SHA-256 before running.</p>
   </section>
 
 </main>
@@ -168,9 +219,9 @@ addnode=caps.undergroundroots.ca</code></pre>
     <a href="https://wallet.undergroundroots.ca">Wallet</a>
     <a href="https://asicpool.space">Pool</a>
   </div>
-  <p>CAPS · a community project of <a href="https://undergroundroots.ca">undergroundroots</a>. Not an investment — a wasteland currency you actually use.</p>
+  <p>BTLCAP <span class="muted">(formerly CAPS)</span> · a community project of <a href="https://undergroundroots.ca">undergroundroots</a>. Not an investment — a wasteland currency you actually use.</p>
 </footer>
-<script src="/assets/bgfx.js?v=202610251224" defer></script>
-<script src="/assets/beta-notice.js?v=202610251224" defer></script>
+<script src="/assets/bgfx.js?v=202611011140" defer></script>
+<script src="/assets/beta-notice.js?v=202611011140" defer></script>
 </body>
 </html>

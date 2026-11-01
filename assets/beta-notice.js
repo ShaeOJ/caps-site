@@ -8,7 +8,7 @@
  * a materially different announcement.
  */
 (function betaNotice() {
-  var NOTICE_VERSION = '2026-10-caps-beta';
+  var NOTICE_VERSION = '2026-11-btlcap-rebrand';
   var KEY = 'caps.betaNotice';
 
   try {
@@ -35,10 +35,12 @@
       '  <div class="beta-scan" aria-hidden="true"></div>',
       '  <div class="beta-eyebrow">&#9670; Ministry Bulletin &#9670;</div>',
       '  <h2 class="beta-title" id="betaTitle">THIS SECTOR IS UNDER CONSTRUCTION</h2>',
-      '  <p class="beta-lede">CAPS is in <b>BETA</b> and under active development.',
-      '     The chain, the pool, the explorer and the wallet are all live &mdash;',
-      '     and all still being worked on.</p>',
+      '  <p class="beta-lede"><b>CAPS is becoming BTLCAP.</b> The project is in',
+      '     <b>BETA</b> and under active development. The chain, the pool, the',
+      '     explorer and the wallet are all live &mdash; and all still being',
+      '     worked on.</p>',
       '  <ul class="beta-list">',
+      '    <li><b>Rebrand in progress:</b> new name, ticker and <code>btlcap…</code> addresses, plus a 420,000,000 supply schedule &mdash; your existing balances and mined coins stay <b>fully spendable</b>.</li>',
       '    <li>Expect downtime, resets and rough edges without notice.</li>',
       '    <li>Consensus rules may still change. Keep your node updated.</li>',
       '    <li>The wallet is non-custodial &mdash; <b>write down your recovery phrase</b>.</li>',
