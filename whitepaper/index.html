@@ -9,8 +9,8 @@
 <meta property="og:description" content="Design, consensus, supply, and an honest account of CAPS's security limitations.">
 <meta property="og:image" content="/assets/caps-og.png">
 <link rel="icon" type="image/png" href="/assets/favicon.png">
-<link rel="stylesheet" href="/assets/style.css?v=202611011147">
-<link rel="stylesheet" href="/assets/paper.css?v=202611011147">
+<link rel="stylesheet" href="/assets/style.css?v=202611030437">
+<link rel="stylesheet" href="/assets/paper.css?v=202611030437">
 </head><body>
 <canvas id="bgfx" aria-hidden="true"></canvas>
 <div class="scanlines" aria-hidden="true"></div>
@@ -47,13 +47,13 @@
 <li><a href="#appendix-c-verifying-what-you-run">Appendix C — Verifying what you run</a></li></ul></aside>
   <article>
 <h1>BTLCAP — A Wasteland Community Currency</h1>
-<p><strong>White paper · version 1.1</strong> Last verified at <strong>block height 3,573</strong>, 1 November 2026.</p>
+<p><strong>White paper · version 1.1</strong> Last verified at <strong>block height 4,487</strong>, 3 November 2026.</p>
 <p>&gt; <strong>Rename in progress — CAPS is becoming BTLCAP.</strong> The ticker and name are &gt; changing from <em>CAPS</em> to <em>BTLCAP</em> (to avoid a clash with an unrelated project), &gt; along with the address spelling (<code>caps1…</code>/<code>C…</code> → <code>btlcap1…</code>/<code>B…</code>). This is a &gt; <strong>rebrand plus a forward-only supply upgrade, not a relaunch</strong> — the same &gt; chain, the same blocks, and every coin already mined carry over untouched. On &gt; the wire and on disk the software, ports and config keys stay <code>caps*</code>.</p>
 <p>Website: <a href="https://caps-core.undergroundroots.ca">caps-core.undergroundroots.ca</a> · Explorer: <a href="https://caps.undergroundroots.ca">caps.undergroundroots.ca</a> Wallet: <a href="https://wallet.undergroundroots.ca">wallet.undergroundroots.ca</a> · Source: <a href="https://github.com/ShaeOJ/caps-core">github.com/ShaeOJ/caps-core</a></p>
 <hr>
 <h2 id="abstract">Abstract</h2>
 <p>BTLCAP is a small SHA-256d proof-of-work cryptocurrency with a post-apocalyptic bottle-cap theme. It exists so that an ordinary person can run an entire crypto stack end to end — mine a block, run a full node, read an explorer, and hold their own keys — on a chain small enough to actually understand.</p>
-<p>BTLCAP is <strong>not an investment</strong>, has no market, and makes no promises about price. Two facts are stated here rather than buried: block 1 contains a <strong>470,000 BTLCAP premine</strong>, which is about <strong>72.5% of all coins currently in existence</strong> (though only ~0.11% of the eventual 420,470,000 maximum); and the network is currently <strong>tiny and centralised</strong> — roughly 3.0 TH/s, essentially all of it from one operator. A single modern ASIC is millions of times that hashrate. Anyone evaluating BTLCAP should read Section 7 before anything else.</p>
+<p>BTLCAP is <strong>not an investment</strong>, has no market, and makes no promises about price. Two facts are stated here rather than buried: block 1 contains a <strong>470,000 BTLCAP premine</strong>, which is about <strong>67.7% of all coins currently in existence</strong> (though only ~0.11% of the eventual 420,470,000 maximum); and the network is currently <strong>tiny and centralised</strong> — roughly 1.4 TH/s, essentially all of it from one operator. A single modern ASIC is millions of times that hashrate. Anyone evaluating BTLCAP should read Section 7 before anything else.</p>
 <hr>
 <h2 id="1-why-btlcap-exists">1. Why BTLCAP exists</h2>
 <p>Most coins ask you to buy them. BTLCAP asks you to run one.</p>
@@ -91,9 +91,9 @@
 </tbody></table></div>
 <h3 id="4-1-the-premine-without-spin">4.1 The premine, without spin</h3>
 <p>Block 1 contains <strong>470,000 BTLCAP</strong>.</p>
-<p>At height 3,573, total supply is <strong>648,600 BTLCAP</strong>. The premine is therefore:</p>
-<ul><li><strong>≈ 72.5% of all BTLCAP that currently exist</strong></li><li><strong>≈ 0.11% of the 420,470,000 eventual maximum</strong></li><li><strong>≈ 0.22% of the 210,000,000 that will be issued before the first halving</strong></li></ul>
-<p>Both the first number and the last two are true, and they tell different stories. The first is what a sceptic will calculate today, so it is printed here first. The chain is young — 3,573 blocks — so ordinary emission has not yet had time to dilute the initial allocation. That dilution is mechanical and predictable: at 500 BTLCAP per 5-minute block, roughly 144,000 BTLCAP are issued per day, and the premine falls below 50% of supply within a few days of continuous mining.</p>
+<p>At height 4,487, total supply is <strong>694,300 BTLCAP</strong>. The premine is therefore:</p>
+<ul><li><strong>≈ 67.7% of all BTLCAP that currently exist</strong></li><li><strong>≈ 0.11% of the 420,470,000 eventual maximum</strong></li><li><strong>≈ 0.22% of the 210,000,000 that will be issued before the first halving</strong></li></ul>
+<p>Both the first number and the last two are true, and they tell different stories. The first is what a sceptic will calculate today, so it is printed here first. The chain is young — 4,487 blocks — so ordinary emission has not yet had time to dilute the initial allocation. That dilution is mechanical and predictable: at 500 BTLCAP per 5-minute block, roughly 144,000 BTLCAP are issued per day, and the premine falls below 50% of supply within a few days of continuous mining.</p>
 <p><strong>What it is for:</strong> seeding the mining pool and funding community prizes, tips and perks. <strong>Where it is:</strong> held by the project operator in a known wallet. <strong>Commitment:</strong> material spends from the premine will be disclosed publicly.</p>
 <p>A reader who considers a 470,000-coin premine disqualifying is making a reasonable judgement, and this document is not going to argue them out of it.</p>
 <h3 id="4-2-the-rename-supply-upgrade-in-progress">4.2 The rename + supply upgrade (in progress)</h3>
@@ -124,12 +124,12 @@ curl -s https://wallet.undergroundroots.ca/app.js | sha256sum   # must match</co
 <p>Its limits are described honestly in Section 7.4.</p>
 <hr>
 <h2 id="6-current-state-of-the-network">6. Current state of the network</h2>
-<p>Measured at height 3,573, 1 November 2026:</p>
+<p>Measured at height 4,487, 3 November 2026:</p>
 <div class="tw"><table><thead><tr><th>Metric</th><th>Value</th></tr></thead><tbody>
-<tr><td>Block height</td><td>3,573</td></tr>
-<tr><td>Total supply</td><td>648,600 BTLCAP</td></tr>
-<tr><td>Difficulty</td><td>~213594.27</td></tr>
-<tr><td>Network hashrate</td><td>~3.0 TH/s</td></tr>
+<tr><td>Block height</td><td>4,487</td></tr>
+<tr><td>Total supply</td><td>694,300 BTLCAP</td></tr>
+<tr><td>Difficulty</td><td>~98205.10</td></tr>
+<tr><td>Network hashrate</td><td>~1.4 TH/s</td></tr>
 <tr><td>Reachable peers (seed node)</td><td>1</td></tr>
 <tr><td>Chain size on disk</td><td>&lt; 1 MB</td></tr>
 </tbody></table></div>
@@ -138,7 +138,7 @@ curl -s https://wallet.undergroundroots.ca/app.js | sha256sum   # must match</co
 <h2 id="7-security-model-and-honest-limitations">7. Security model and honest limitations</h2>
 <p>This is the most important section of this document.</p>
 <h3 id="7-1-proof-of-work-security-is-negligible">7.1 Proof-of-work security is negligible</h3>
-<p>BTLCAP network hashrate is approximately <strong>3.0 TH/s</strong>. A single modern SHA-256 ASIC — for example an Antminer S19 at ~100 TH/s — is roughly <strong>0.0 million times</strong> the entire BTLCAP network.</p>
+<p>BTLCAP network hashrate is approximately <strong>1.4 TH/s</strong>. A single modern SHA-256 ASIC — for example an Antminer S19 at ~100 TH/s — is roughly <strong>0.0 million times</strong> the entire BTLCAP network.</p>
 <p>The consequence is unambiguous: <strong>anyone with one second-hand miner, or a few dollars of rented hashrate, can reorganise the BTLCAP chain at will.</strong> BTLCAP does not have meaningful proof-of-work security in absolute terms and does not claim to. Any statement that BTLCAP is &quot;secured by SHA-256 like Bitcoin&quot; would be technically true about the algorithm and dangerously misleading about the security, and is not made here.</p>
 <h3 id="7-2-why-that-is-survivable-today-and-what-would-change-it">7.2 Why that is survivable today, and what would change it</h3>
 <p>Double-spend attacks are economically motivated: an attacker reorganises a chain to reverse a payment they have already converted into something else. BTLCAP has no exchange, no market and no liquid off-ramp. There is, at present, nothing to steal. The realistic threat is <strong>vandalism</strong> — someone reorganising the chain to prove they can — which is disruptive but not profitable.</p>
@@ -228,7 +228,7 @@ addnode=caps.undergroundroots.ca</code></pre>
 <p><strong>Node binaries:</strong> download <code>SHA256SUMS.txt</code> from <a href="https://caps-core.undergroundroots.ca">caps-core.undergroundroots.ca</a> and run <code>sha256sum -c SHA256SUMS.txt</code>.</p>
 <p><strong>Web wallet:</strong> see Section 5.4. A matching hash proves the served code is the published source. A mismatch means <strong>do not enter your seed phrase</strong>.</p>
 <hr>
-<p><em>BTLCAP (formerly CAPS) is a community project of undergroundroots. It is not an investment, and nothing in this document is financial advice. All figures were verified at block height 3,573 on 1 November 2026 and will drift as the chain grows.</em></p>
+<p><em>BTLCAP (formerly CAPS) is a community project of undergroundroots. It is not an investment, and nothing in this document is financial advice. All figures were verified at block height 4,487 on 3 November 2026 and will drift as the chain grows.</em></p>
   </article>
 </main>
 
@@ -242,6 +242,6 @@ addnode=caps.undergroundroots.ca</code></pre>
   </div>
   <p>CAPS &middot; a community project of <a href="https://undergroundroots.ca">undergroundroots</a>. Not an investment &mdash; a wasteland currency you actually use.</p>
 </footer>
-<script src="/assets/bgfx.js?v=202611011147" defer></script>
-<script src="/assets/beta-notice.js?v=202611011147" defer></script>
+<script src="/assets/bgfx.js?v=202611030437" defer></script>
+<script src="/assets/beta-notice.js?v=202611030437" defer></script>
 </body></html>

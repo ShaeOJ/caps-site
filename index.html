@@ -11,7 +11,7 @@
 <meta property="og:type" content="website">
 <meta property="og:image" content="/assets/btlcap-og.webp">
 <link rel="icon" type="image/png" href="/assets/btlcap-favicon.png">
-<link rel="stylesheet" href="/assets/style.css?v=202611011140">
+<link rel="stylesheet" href="/assets/style.css?v=202611040845">
 <style>
   /* transitional update banner */
   .update-bar{position:sticky;top:0;z-index:50;display:flex;gap:.6rem;align-items:center;justify-content:center;
@@ -49,8 +49,8 @@
 
 <div class="update-bar" role="status">
   <span class="pulse" aria-hidden="true"></span>
-  <span><b>Rebrand in progress:</b> CAPS is becoming <b>BTLCAP</b> — new look, new ticker, a <b>420,000,000</b> supply schedule and <b>btlcap…</b> addresses are rolling out. Every existing balance and mined coin stays <b>fully spendable</b>.</span>
-  <a href="#roadmap">See the roadmap →</a>
+  <span><b>BTLCAP upgrade live:</b> CAPS is now <b>BTLCAP</b> — new <b>v1.2.0</b> node binaries, the <b>420,000,000</b> supply schedule and native <b>btlcap1…</b> addresses are live across the network, pool, explorer, and wallet. All existing coins remain <b>fully spendable</b>.</span>
+  <a href="#downloads">Get v1.2.0 Node →</a>
 </div>
 
 <header class="site-nav">
@@ -102,7 +102,7 @@
         <p>Used for tips, prizes, and perks across the undergroundroots community. Value comes from being used, not from hype.</p>
       </div>
     </div>
-    <p class="note"><b>Name note:</b> the coin is being renamed from <b>CAPS → BTLCAP</b> to avoid a clash with an unrelated project. It's a <b>rebrand, not a relaunch</b> — the same chain, the same blocks, and every coin you already hold carry straight over. Only the name, ticker, logo and address spelling change.</p>
+    <p class="note"><b>Name note:</b> the coin has been upgraded from <b>CAPS → BTLCAP</b> to avoid a clash with an unrelated project. It's a <b>rebrand, not a relaunch</b> — the same chain, the same blocks, and every coin you already hold carry straight over. Only the name, ticker, logo and address spelling change.</p>
   </section>
 
   <section id="specs" class="band alt">
@@ -118,13 +118,13 @@
         <tr><th>Coinbase maturity</th><td>50 blocks</td></tr>
         <tr><th>Difficulty</th><td>LWMA, per-block (window N = 96)</td></tr>
         <tr><th>Premine</th><td>block 1 = 470,000 BTLCAP (community/pool seed)</td></tr>
-        <tr><th>Address format</th><td>bech32 <code>btlcap1…</code> · legacy <code>B…</code> <span class="muted">(was <code>caps1…</code> / <code>C…</code> — see roadmap)</span></td></tr>
+        <tr><th>Address format</th><td>bech32 <code>btlcap1…</code> · legacy <code>B…</code> <span class="muted">(was <code>caps1…</code> / <code>C…</code>)</span></td></tr>
         <tr><th>P2P / RPC ports</th><td>12566 / 12567</td></tr>
         <tr><th>Ticker</th><td>BTLCAP</td></tr>
       </tbody>
     </table>
     </div>
-    <p class="note"><b>Supply upgrade (in progress):</b> BTLCAP keeps the <b>500&nbsp;BTLCAP</b> block reward and halves every <b>420,000&nbsp;blocks</b> (~4&nbsp;years), for an eventual maximum near <b>420,470,000&nbsp;BTLCAP</b>. This is a forward-only consensus change — it <b>preserves every coin already mined</b>, needs <b>no new genesis</b> and reissues nothing. Details in the <a href="/whitepaper/">white paper</a>.</p>
+    <p class="note"><b>Supply upgrade live:</b> BTLCAP features a <b>500&nbsp;BTLCAP</b> block reward and halves every <b>420,000&nbsp;blocks</b> (~4&nbsp;years), for an eventual maximum near <b>420,470,000&nbsp;BTLCAP</b>. This forward-only consensus upgrade <b>preserves every coin already mined</b>, requires <b>no new genesis</b> and reissues nothing. Details in the <a href="/whitepaper/">white paper</a>.</p>
   </section>
 
   <section id="roadmap" class="band">
@@ -132,13 +132,14 @@
     <p class="lead">Where BTLCAP has been and what's landing next. Honest status — no promises dressed up as dates.</p>
     <ol class="road">
       <li class="done"><span class="ph">Done</span><h4>The full stack is live</h4><p>Coin → community pool → block explorer → non-custodial web wallet → this website. You can already mine, run a node, explore and self-custody today.</p></li>
-      <li class="active"><span class="ph">In progress</span><h4>BTLCAP rebrand</h4><p>New name, ticker and bottle-cap logo across the site, wallets, explorer and pool. Display only — the chain, your keys and your balances are untouched.</p></li>
-      <li class="active"><span class="ph">In progress</span><h4>420,000,000 supply schedule</h4><p>Forward-only upgrade to a 500-reward / 420,000-block-halving emission. No relaunch, no reissue — proven on an isolated copy of the live chain before any node is switched.</p></li>
-      <li class="active"><span class="ph">In progress</span><h4>New <code>btlcap…</code> addresses</h4><p>Addresses change spelling from <code>caps1…</code>/<code>C…</code> to <code>btlcap1…</code>/<code>B…</code>. Same keys, same coins — your funds stay spendable; only the receive-address text is re-published.</p></li>
-      <li class="next"><span class="ph">Next</span><h4>Front-end refresh</h4><p>A redesigned caps-core front end — cleaner layout, live chain stats, and the new wasteland look throughout.</p></li>
-      <li class="next"><span class="ph">Next</span><h4>Coordinated node + pool cutover</h4><p>A single short upgrade window moves the node, pool and wallet relay together, then the new release ships on GitHub for everyone running their own node.</p></li>
+      <li class="done"><span class="ph">Done</span><h4>BTLCAP rebrand</h4><p>New name, ticker and bottle-cap logo across the site, wallets, explorer and pool. The chain, your keys and your balances are untouched.</p></li>
+      <li class="done"><span class="ph">Done</span><h4>420,000,000 supply schedule</h4><p>Forward-only upgrade to a 500-reward / 420,000-block-halving emission. No relaunch, no reissue — preserving all history and mined coins.</p></li>
+      <li class="done"><span class="ph">Done</span><h4>New <code>btlcap…</code> addresses</h4><p>Addresses transitioned from <code>caps1…</code>/<code>C…</code> to <code>btlcap1…</code>/<code>B…</code>. Same keys, same coins — all previous funds stay spendable.</p></li>
+      <li class="done"><span class="ph">Done</span><h4>Coordinated node + pool cutover</h4><p>The network, pool, explorer, and web wallet transitioned together. BTLCAP v1.2.0 node release is published for all operators.</p></li>
+      <li class="active"><span class="ph">In progress</span><h4>Mobile wallet app</h4><p>Standalone mobile vault and password manager keyed by BTLCAP signatures, with built-in wallet management.</p></li>
+      <li class="next"><span class="ph">Next</span><h4>Bottlecaps sidechain</h4><p>AuxPoW merged-mined sidechain on BTLCAP for digital wasteland collectible trading cards.</p></li>
     </ol>
-    <p class="note"><b>Right now:</b> the live network is still on the <code>caps…</code> address format while the upgrade is prepared. If you're mining today, keep using your <code>caps1…</code> address — this page and the wallet will switch to <code>btlcap1…</code> when the cutover completes.</p>
+    <p class="note"><b>Network status:</b> The live network is fully operating on the <b>BTLCAP v1.2.0</b> release with native <code>btlcap1…</code> addresses. The pool, explorer, web wallet, and public seed nodes are live and synced.</p>
   </section>
 
   <section id="start" class="band alt">
@@ -152,7 +153,7 @@ stratum+tcp://asicpool.space:8433   user: &lt;your address&gt;   pass: x
 
 # CPU / low-difficulty
 stratum+tcp://asicpool.space:8434   user: &lt;your address&gt;   pass: x</code></pre>
-      <p class="hint">Today the network uses <code>caps1…</code> addresses; they become <code>btlcap1…</code> after the cutover (see <a href="#roadmap">roadmap</a>). Don't have one yet? Create it in the <a href="https://wallet.undergroundroots.ca">web wallet</a> — your keys stay in your browser.</p>
+      <p class="hint">The network uses <code>btlcap1…</code> addresses (legacy <code>B…</code> also supported). Don't have one yet? Generate one in the <a href="https://wallet.undergroundroots.ca">web wallet</a> — your keys stay encrypted in your browser.</p>
     </div>
 
     <div class="step">
@@ -164,7 +165,7 @@ txindex=1
 rpcuser=choose_a_user
 rpcpassword=choose_a_strong_password
 addnode=caps.undergroundroots.ca</code></pre>
-      <p class="hint">Start it with <code>capsd</code> and check progress with <code>caps-cli getblockchaininfo</code>. Default P2P port is 12566. <span class="muted">(On-disk tool names stay <code>caps*</code> through the rebrand.)</span></p>
+      <p class="hint">Start it with <code>capsd</code> and check progress with <code>caps-cli getblockchaininfo</code>. Default P2P port is 12566. The public seed node (<code>caps.undergroundroots.ca</code>) is built into v1.2.0 and connects automatically — no manual peer configuration required! <span class="muted">(On-disk tool names stay <code>caps*</code> for script compatibility.)</span></p>
     </div>
 
     <div class="step">
@@ -178,23 +179,23 @@ addnode=caps.undergroundroots.ca</code></pre>
     <p class="lead">BTLCAP is open source. Prebuilt nodes for Linux, Windows and macOS — or build it yourself.</p>
 
     <div class="dl-grid">
-      <a class="dl" href="https://github.com/ShaeOJ/caps-core/releases/download/v1.1.0/caps-1.1.0-linux-x86_64.tar.gz">
+      <a class="dl" href="https://github.com/ShaeOJ/caps-core/releases/download/v1.2.0/caps-1.2.0-linux-x86_64.tar.gz">
         <div class="dl-ico">🐧</div>
-        <div><h3>Linux x86_64</h3><p><code>capsd</code>, <code>caps-cli</code>, <code>caps-tx</code>, <code>caps-wallet</code> — stripped.</p><span class="dl-meta">caps-1.1.0-linux-x86_64.tar.gz</span></div>
+        <div><h3>Linux x86_64</h3><p><code>capsd</code>, <code>caps-cli</code>, <code>caps-tx</code>, <code>caps-wallet</code> — stripped.</p><span class="dl-meta">caps-1.2.0-linux-x86_64.tar.gz</span></div>
       </a>
-      <a class="dl" href="https://github.com/ShaeOJ/caps-core/releases/download/v1.1.0/caps-1.1.0-win64.zip">
+      <a class="dl" href="https://github.com/ShaeOJ/caps-core/releases/download/v1.2.0/caps-1.2.0-win64.zip">
         <div class="dl-ico">🪟</div>
-        <div><h3>Windows x86_64</h3><p>Same four tools as <code>.exe</code>. Unsigned, so SmartScreen will warn — verify the checksum.</p><span class="dl-meta">caps-1.1.0-win64.zip</span></div>
+        <div><h3>Windows x86_64</h3><p>Same four tools as <code>.exe</code>. Unsigned, so SmartScreen will warn — verify the checksum.</p><span class="dl-meta">caps-1.2.0-win64.zip</span></div>
       </a>
-      <a class="dl" href="https://github.com/ShaeOJ/caps-core/releases/download/v1.1.0/caps-1.1.0-macos-arm64.tar.gz">
+      <a class="dl" href="https://github.com/ShaeOJ/caps-core/releases/download/v1.2.0/caps-1.2.0-macos-arm64.tar.gz">
         <div class="dl-ico">🍎</div>
-        <div><h3>macOS (Apple Silicon)</h3><p>arm64 build. Unsigned — see <code>MACOS_FIRST_RUN.txt</code> inside.</p><span class="dl-meta">caps-1.1.0-macos-arm64.tar.gz</span></div>
+        <div><h3>macOS (Apple Silicon)</h3><p>arm64 build. Unsigned — see <code>MACOS_FIRST_RUN.txt</code> inside.</p><span class="dl-meta">caps-1.2.0-macos-arm64.tar.gz</span></div>
       </a>
-      <a class="dl" href="https://github.com/ShaeOJ/caps-core/releases/download/v1.1.0/caps-1.1.0-macos-x86_64.tar.gz">
+      <a class="dl" href="https://github.com/ShaeOJ/caps-core/releases/download/v1.2.0/caps-1.2.0-macos-x86_64.tar.gz">
         <div class="dl-ico">🍎</div>
-        <div><h3>macOS (Intel)</h3><p>x86_64 build. Unsigned — see <code>MACOS_FIRST_RUN.txt</code> inside.</p><span class="dl-meta">caps-1.1.0-macos-x86_64.tar.gz</span></div>
+        <div><h3>macOS (Intel)</h3><p>x86_64 build. Unsigned — see <code>MACOS_FIRST_RUN.txt</code> inside.</p><span class="dl-meta">caps-1.2.0-macos-x86_64.tar.gz</span></div>
       </a>
-      <a class="dl" href="https://github.com/ShaeOJ/caps-core/releases/download/v1.1.0/SHA256SUMS.txt">
+      <a class="dl" href="https://github.com/ShaeOJ/caps-core/releases/download/v1.2.0/SHA256SUMS.txt">
         <div class="dl-ico">🔏</div>
         <div><h3>Checksums</h3><p>Verify every download with <code>sha256sum -c SHA256SUMS.txt</code>.</p><span class="dl-meta">SHA256SUMS.txt</span></div>
       </a>
@@ -207,7 +208,7 @@ addnode=caps.undergroundroots.ca</code></pre>
         <div><h3>White paper</h3><p>Design, consensus, supply and an honest account of the limitations.</p><span class="dl-meta">v1.1 · web · text · markdown</span></div>
       </a>
     </div>
-    <p class="note"><b>A BTLCAP release is coming.</b> The 420M-supply / <code>btlcap…</code>-address build ships alongside the network cutover — until then the current <b>v1.1.0</b> binaries above are the right ones to run. Binaries are unsigned, so Windows SmartScreen and macOS Gatekeeper will warn; verify the SHA-256 before running.</p>
+    <p class="note"><b>BTLCAP v1.2.0 is live.</b> Includes the 420M supply schedule, native <code>btlcap1…</code> address encoding, built-in DNS seed node discovery (<code>caps.undergroundroots.ca</code>), and pre-packaged <code>caps.conf</code>. Binaries are unsigned, so Windows SmartScreen and macOS Gatekeeper will warn; verify the SHA-256 before running.</p>
   </section>
 
 </main>
@@ -221,7 +222,7 @@ addnode=caps.undergroundroots.ca</code></pre>
   </div>
   <p>BTLCAP <span class="muted">(formerly CAPS)</span> · a community project of <a href="https://undergroundroots.ca">undergroundroots</a>. Not an investment — a wasteland currency you actually use.</p>
 </footer>
-<script src="/assets/bgfx.js?v=202611011140" defer></script>
-<script src="/assets/beta-notice.js?v=202611011140" defer></script>
+<script src="/assets/bgfx.js?v=202611040845" defer></script>
+<script src="/assets/beta-notice.js?v=202611040845" defer></script>
 </body>
 </html>
