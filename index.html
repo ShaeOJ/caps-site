@@ -58,6 +58,7 @@
   <nav>
     <a href="#about">About</a>
     <a href="#specs">Specs</a>
+    <a href="#sidechain">Sidechain</a>
     <a href="#roadmap">Roadmap</a>
     <a href="#start">Get started</a>
     <a href="#downloads">Downloads</a>
@@ -127,8 +128,53 @@
     <p class="note"><b>Supply upgrade live:</b> BTLCAP features a <b>500&nbsp;BTLCAP</b> block reward and halves every <b>420,000&nbsp;blocks</b> (~4&nbsp;years), for an eventual maximum near <b>420,470,000&nbsp;BTLCAP</b>. This forward-only consensus upgrade <b>preserves every coin already mined</b>, requires <b>no new genesis</b> and reissues nothing. Details in the <a href="/whitepaper/">white paper</a>.</p>
   </section>
 
+  <section id="sidechain" class="band alt">
+    <h2><span class="num">03</span> Bottlecaps Sidechain (CAPC)</h2>
+    <p class="lead">An AuxPoW merged-mined sidechain bringing 1-of-1 wasteland digital collectibles, automatic pool drops, and on-chain crafting to BTLCAP.</p>
+
+    <div class="dl-grid" style="margin: 20px 0;">
+      <div class="dl">
+        <div class="dl-ico">⛏️</div>
+        <div>
+          <h3>Zero-Energy Merged Mining (AuxPoW)</h3>
+          <p>BTLCAP miners simultaneously secure the Bottlecaps sidechain without using any additional electricity or hashrate. Every valid block found on the pool acts as auxiliary proof-of-work.</p>
+          <span class="dl-meta">AuxPoW Port: 14668 · Pool: asicpool.space</span>
+        </div>
+      </div>
+
+      <div class="dl">
+        <div class="dl-ico">🎁</div>
+        <div>
+          <h3>Automatic Miner Card Drops</h3>
+          <p>Every block mined on the community pool triggers an automatic 1-of-1 bottlecap collectible drop across 5 procedural rarity tiers (Scrap, Brass, Silver, Gilded Gold, and Quantum Glow) awarded to the miner's address.</p>
+          <span class="dl-meta">Tiers 1–5 · Procedural metadata · On-chain provenance</span>
+        </div>
+      </div>
+
+      <div class="dl">
+        <div class="dl-ico">🎨</div>
+        <div>
+          <h3>The Wasteland Forge Studio</h3>
+          <p>Craft your own 1-of-1 custom bottlecap in the Web Wallet or Mobile Vault for 50 BCAP. Hand-draw your emblem directly on the digital pad or upload custom artwork with customizable metals, fluting, and rarity glows.</p>
+          <span class="dl-meta">Vector strokes / custom image · 50 BCAP burn</span>
+        </div>
+      </div>
+
+      <div class="dl">
+        <div class="dl-ico">🔐</div>
+        <div>
+          <h3>Single-Use UTXO Seals</h3>
+          <p>Collectibles are cryptographically anchored to UTXOs using single-use seals (<code>OP_TRANSFER</code> / <code>OP_FORGE</code>). Transfer your bottlecaps peer-to-peer directly from your wallet with zero counterparty risk.</p>
+          <span class="dl-meta">Client-side signing · Pure self-custody</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="note"><b>Explore the collection:</b> Open the <a href="https://wallet.undergroundroots.ca">Web Wallet</a> or download the <b>Caps Vault</b> Android app to view live network drops, manage your collection, or forge your first cap.</p>
+  </section>
+
   <section id="roadmap" class="band">
-    <h2><span class="num">03</span> Roadmap</h2>
+    <h2><span class="num">04</span> Roadmap</h2>
     <p class="lead">Where BTLCAP has been and what's landing next. Honest status — no promises dressed up as dates.</p>
     <ol class="road">
       <li class="done"><span class="ph">Done</span><h4>The full stack is live</h4><p>Coin → community pool → block explorer → non-custodial web wallet → this website. You can already mine, run a node, explore and self-custody today.</p></li>
@@ -136,14 +182,15 @@
       <li class="done"><span class="ph">Done</span><h4>420,000,000 supply schedule</h4><p>Forward-only upgrade to a 500-reward / 420,000-block-halving emission. No relaunch, no reissue — preserving all history and mined coins.</p></li>
       <li class="done"><span class="ph">Done</span><h4>New <code>btlcap…</code> addresses</h4><p>Addresses transitioned from <code>caps1…</code>/<code>C…</code> to <code>btlcap1…</code>/<code>B…</code>. Same keys, same coins — all previous funds stay spendable.</p></li>
       <li class="done"><span class="ph">Done</span><h4>Coordinated node + pool cutover</h4><p>The network, pool, explorer, and web wallet transitioned together. BTLCAP v1.2.0 node release is published for all operators.</p></li>
-      <li class="active"><span class="ph">In progress</span><h4>Mobile wallet app</h4><p>Standalone mobile vault and password manager keyed by BTLCAP signatures, with built-in wallet management.</p></li>
-      <li class="next"><span class="ph">Next</span><h4>Bottlecaps sidechain</h4><p>AuxPoW merged-mined sidechain on BTLCAP for digital wasteland collectible trading cards.</p></li>
+      <li class="done"><span class="ph">Done</span><h4>Bottlecaps (CAPC) sidechain &amp; Forge Studio</h4><p>AuxPoW merged-mining sidechain is live on the pool with automatic random card drops, single-use seal UTXO transfers, and custom 50 BCAP hand-drawn cap forging.</p></li>
+      <li class="done"><span class="ph">Done</span><h4>Caps Vault mobile app (Android)</h4><p>Native biometric password vault, transaction signer, and interactive 3D bottlecaps collection viewer.</p></li>
+      <li class="next"><span class="ph">Next</span><h4>Wasteland Trading Post (P2P Card Exchange)</h4><p>Trustless on-chain card swaps and peer-to-peer exchange for wasteland collectibles.</p></li>
     </ol>
     <p class="note"><b>Network status:</b> The live network is fully operating on the <b>BTLCAP v1.2.0</b> release with native <code>btlcap1…</code> addresses. The pool, explorer, web wallet, and public seed nodes are live and synced.</p>
   </section>
 
   <section id="start" class="band alt">
-    <h2><span class="num">04</span> Get started</h2>
+    <h2><span class="num">05</span> Get started</h2>
 
     <div class="step">
       <h3>⛏️ Mine BTLCAP</h3>
@@ -175,7 +222,7 @@ addnode=caps.undergroundroots.ca</code></pre>
   </section>
 
   <section id="downloads" class="band">
-    <h2><span class="num">05</span> Downloads</h2>
+    <h2><span class="num">06</span> Downloads</h2>
     <p class="lead">BTLCAP is open source. Prebuilt nodes for Linux, Windows and macOS — or build it yourself.</p>
 
     <div class="dl-grid">
@@ -194,6 +241,10 @@ addnode=caps.undergroundroots.ca</code></pre>
       <a class="dl" href="https://github.com/ShaeOJ/caps-core/releases/download/v1.2.0/caps-1.2.0-macos-x86_64.tar.gz">
         <div class="dl-ico">🍎</div>
         <div><h3>macOS (Intel)</h3><p>x86_64 build. Unsigned — see <code>MACOS_FIRST_RUN.txt</code> inside.</p><span class="dl-meta">caps-1.2.0-macos-x86_64.tar.gz</span></div>
+      </a>
+      <a class="dl" href="https://github.com/ShaeOJ/CapsPasswordManager/releases/latest">
+        <div class="dl-ico">📱</div>
+        <div><h3>Android App (Caps Vault)</h3><p>Biometric password manager, BTLCAP signer, and 3D bottlecap collectible vault.</p><span class="dl-meta">CapsVault-release.apk</span></div>
       </a>
       <a class="dl" href="https://github.com/ShaeOJ/caps-core/releases/download/v1.2.0/SHA256SUMS.txt">
         <div class="dl-ico">🔏</div>

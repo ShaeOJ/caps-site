@@ -9,8 +9,8 @@
 <meta property="og:description" content="Design, consensus, supply, and an honest account of CAPS's security limitations.">
 <meta property="og:image" content="/assets/caps-og.png">
 <link rel="icon" type="image/png" href="/assets/favicon.png">
-<link rel="stylesheet" href="/assets/style.css?v=202611030437">
-<link rel="stylesheet" href="/assets/paper.css?v=202611030437">
+<link rel="stylesheet" href="/assets/style.css?v=202611042237">
+<link rel="stylesheet" href="/assets/paper.css?v=202611042237">
 </head><body>
 <canvas id="bgfx" aria-hidden="true"></canvas>
 <div class="scanlines" aria-hidden="true"></div>
@@ -47,6 +47,7 @@
 <li><a href="#appendix-c-verifying-what-you-run">Appendix C — Verifying what you run</a></li></ul></aside>
   <article>
 <h1>BTLCAP — A Wasteland Community Currency</h1>
+<p><em>White Paper Version 1.2 — Including the Bottlecaps (CAPC) AuxPoW Sidechain</em></p>
 <p><strong>White paper · version 1.1</strong> Last verified at <strong>block height 4,487</strong>, 3 November 2026.</p>
 <p>&gt; <strong>Rename in progress — CAPS is becoming BTLCAP.</strong> The ticker and name are &gt; changing from <em>CAPS</em> to <em>BTLCAP</em> (to avoid a clash with an unrelated project), &gt; along with the address spelling (<code>caps1…</code>/<code>C…</code> → <code>btlcap1…</code>/<code>B…</code>). This is a &gt; <strong>rebrand plus a forward-only supply upgrade, not a relaunch</strong> — the same &gt; chain, the same blocks, and every coin already mined carry over untouched. On &gt; the wire and on disk the software, ports and config keys stay <code>caps*</code>.</p>
 <p>Website: <a href="https://caps-core.undergroundroots.ca">caps-core.undergroundroots.ca</a> · Explorer: <a href="https://caps.undergroundroots.ca">caps.undergroundroots.ca</a> Wallet: <a href="https://wallet.undergroundroots.ca">wallet.undergroundroots.ca</a> · Source: <a href="https://github.com/ShaeOJ/caps-core">github.com/ShaeOJ/caps-core</a></p>
@@ -122,6 +123,12 @@ npm ci &amp;&amp; npm run build
 sha256sum dist/app.js
 curl -s https://wallet.undergroundroots.ca/app.js | sha256sum   # must match</code></pre>
 <p>Its limits are described honestly in Section 7.4.</p>
+<h3 id="5-5-mobile-vault-app-caps-vault">5.5 Mobile vault app (Caps Vault)</h3>
+<p>An open-source Android native application combining secure credential management, cryptographic identity custody, and full BTLCAP wallet integration.</p>
+<ul><li>Master encryption key derived client-side via PBKDF2-HMAC-SHA256 from user passphrase + hardware-backed biometric authentication (Fingerprint / Face Unlock).</li><li>Embedded non-custodial wallet with native <code>btlcap1…</code> SegWit address management and client-side ECDSA transaction signing.</li><li>Interactive 3D bottlecap collection renderer and offline vault cache.</li><li>Zero telemetry, no cloud storage, fully offline-capable.</li></ul>
+<h3 id="5-6-bottlecaps-capc-sidechain-digital-collectibles">5.6 Bottlecaps (CAPC) Sidechain &amp; Digital Collectibles</h3>
+<p>A dedicated merged-mined sidechain utilizing Auxiliary Proof of Work (AuxPoW) to introduce verifiable digital wasteland trading cards without energy overhead.</p>
+<ul><li><strong>Zero Energy Overhead:</strong> Mainnet miners simultaneously mine BTLCAP and the Bottlecaps sidechain. Blocks submitted on the pool carry auxiliary merkle proofs, securing the sidechain using BTLCAP&#x27;s primary SHA-256d hashrate.</li><li><strong>Automated Miner Drops:</strong> Every mined block triggers a deterministic 1-of-1 card drop directly to the block finder across 5 procedural rarity tiers: Scrap (Tier 1), Brass (Tier 2), Silver (Tier 3), Gilded Gold (Tier 4), and Quantum Glow (Tier 5).</li><li><strong>Single-Use Seals:</strong> Ownership is bound to unspent transaction outputs (UTXOs). Card transfers are validated on-chain via <code>CAPC\x02</code> (<code>OP_TRANSFER</code>) payloads, ensuring peer-to-peer non-custodial trading.</li><li><strong>The Wasteland Forge Studio:</strong> End users can mint custom 1-of-1 bottlecaps by drawing vector strokes or uploading badge emblems. Forging burns 50 BCAP on mainnet via <code>CAPC\x04</code> (<code>OP_FORGE</code>), permanently anchoring the artwork&#x27;s SHA-256 recipe hash into chain history.</li></ul>
 <hr>
 <h2 id="6-current-state-of-the-network">6. Current state of the network</h2>
 <p>Measured at height 4,487, 3 November 2026:</p>
@@ -166,13 +173,11 @@ curl -s https://wallet.undergroundroots.ca/app.js | sha256sum   # must match</co
 <h2 id="9-roadmap">9. Roadmap</h2>
 <p>This is a statement of direction, not a set of promises, and deliberately carries no dates.</p>
 <h3 id="shipped">Shipped</h3>
-<ul><li>Chain live on mainnet (SHA-256d, LWMA difficulty)</li><li>Mining pool: PROP + SOLO, 0% fee, ASIC and CPU ports</li><li>Block explorer</li><li>Non-custodial web wallet with reproducible builds</li><li>Public website with Linux node binaries and checksums</li></ul>
-<h3 id="in-progress-the-btlcap-rebrand">In progress — the BTLCAP rebrand</h3>
-<ul><li><strong>Rename CAPS → BTLCAP</strong> across the site, wallets, explorer and pool — new name, ticker and bottle-cap logo, display-only (chain and balances untouched)</li><li><strong>New <code>btlcap1…</code> / <code>B…</code> addresses</strong> — same keys and coins, re-spelled encoding</li><li><strong>A 500-reward / 420,000-block (four-year) halving schedule</strong> raising the eventual maximum to ~420,470,000 BTLCAP, a forward-only hard fork that preserves every coin already mined — see Section 4.2</li><li><strong>A refreshed caps-core front end</strong> and a coordinated node + pool + wallet cutover, then a tagged release for independent node operators</li></ul>
-<h3 id="near-term-lower-the-barrier-to-running-btlcap">Near term — lower the barrier to running BTLCAP</h3>
-<ul><li><strong>Windows and macOS node binaries</strong> (currently Linux-only) — the single biggest accessibility gap</li><li><strong>A one-command node setup and published seed addresses.</strong> At this size, node count is a more meaningful decentralisation metric than hashrate</li><li>Wallet improvements: receive-address rotation, clearer backup flow, offline/PWA use</li></ul>
+<ul><li>Chain live on mainnet (SHA-256d, LWMA difficulty)</li><li>Mining pool: PROP + SOLO, 0% fee, ASIC and CPU ports</li><li>Block explorer</li><li>Non-custodial web wallet with reproducible builds</li><li>Public website with Linux, Windows, and macOS node binaries</li><li><strong>BTLCAP rebrand &amp; 420M supply schedule:</strong> 500 BCAP block reward, 420,000-block halving interval, and native <code>btlcap1…</code> SegWit addresses</li><li><strong>Built-in DNS seed node discovery:</strong> automatic peer mesh via <code>caps.undergroundroots.ca</code></li><li><strong>Mobile vault app (Caps Vault):</strong> Android release with biometric authentication, key management, and 3D collectible viewer</li><li><strong>Bottlecaps (CAPC) sidechain:</strong> AuxPoW merged mining on the pool, procedural card drops, single-use UTXO seals, and custom 50 BCAP Forge Studio</li></ul>
+<h3 id="near-term-ecosystem-utility">Near term — ecosystem utility</h3>
+<ul><li><strong>Wasteland Trading Post:</strong> Trustless on-chain P2P card swaps and exchange</li><li>Wallet improvements: receive-address rotation, clearer backup flow, offline/PWA use</li><li><strong>Independent miners and a second pool</strong>, so the current pool is not a chokepoint and Section 7.3 stops being true</li></ul>
 <h3 id="medium-term-make-it-genuinely-used">Medium term — make it genuinely used</h3>
-<ul><li>Community tipping and prizes actually circulating — the community-currency pillar has to be demonstrated, not asserted</li><li><strong>Independent miners and a second pool</strong>, so the current pool is not a chokepoint and Section 7.3 stops being true</li><li>Hardware-wallet / offline signing support</li></ul>
+<ul><li>Community tipping and merchant checkout integrations</li><li>Hardware-wallet / offline signing support</li></ul>
 <h3 id="long-term-resilience">Long term — resilience</h3>
 <ul><li>Node diversity across operators and locations</li><li>Revisiting attack posture <em>if</em> hashrate ever grows enough to matter</li><li>A boring, well-documented upgrade process</li></ul>
 <h3 id="explicitly-not-on-the-roadmap">Explicitly not on the roadmap</h3>
@@ -242,6 +247,6 @@ addnode=caps.undergroundroots.ca</code></pre>
   </div>
   <p>CAPS &middot; a community project of <a href="https://undergroundroots.ca">undergroundroots</a>. Not an investment &mdash; a wasteland currency you actually use.</p>
 </footer>
-<script src="/assets/bgfx.js?v=202611030437" defer></script>
-<script src="/assets/beta-notice.js?v=202611030437" defer></script>
+<script src="/assets/bgfx.js?v=202611042237" defer></script>
+<script src="/assets/beta-notice.js?v=202611042237" defer></script>
 </body></html>

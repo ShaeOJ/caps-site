@@ -1,5 +1,7 @@
 # BTLCAP — A Wasteland Community Currency
 
+*White Paper Version 1.2 — Including the Bottlecaps (CAPC) AuxPoW Sidechain*
+
 **White paper · version 1.1**
 Last verified at **block height 4,487**, 3 November 2026.
 
@@ -253,6 +255,38 @@ curl -s https://wallet.undergroundroots.ca/app.js | sha256sum   # must match
 
 Its limits are described honestly in Section 7.4.
 
+### 5.5 Mobile vault app (Caps Vault)
+
+An open-source Android native application combining secure credential
+management, cryptographic identity custody, and full BTLCAP wallet integration.
+
+- Master encryption key derived client-side via PBKDF2-HMAC-SHA256 from user
+  passphrase + hardware-backed biometric authentication (Fingerprint / Face Unlock).
+- Embedded non-custodial wallet with native `btlcap1…` SegWit address management
+  and client-side ECDSA transaction signing.
+- Interactive 3D bottlecap collection renderer and offline vault cache.
+- Zero telemetry, no cloud storage, fully offline-capable.
+
+### 5.6 Bottlecaps (CAPC) Sidechain & Digital Collectibles
+
+A dedicated merged-mined sidechain utilizing Auxiliary Proof of Work (AuxPoW)
+to introduce verifiable digital wasteland trading cards without energy overhead.
+
+- **Zero Energy Overhead:** Mainnet miners simultaneously mine BTLCAP and
+  the Bottlecaps sidechain. Blocks submitted on the pool carry auxiliary
+  merkle proofs, securing the sidechain using BTLCAP's primary SHA-256d hashrate.
+- **Automated Miner Drops:** Every mined block triggers a deterministic
+  1-of-1 card drop directly to the block finder across 5 procedural rarity
+  tiers: Scrap (Tier 1), Brass (Tier 2), Silver (Tier 3), Gilded Gold (Tier 4),
+  and Quantum Glow (Tier 5).
+- **Single-Use Seals:** Ownership is bound to unspent transaction outputs
+  (UTXOs). Card transfers are validated on-chain via `CAPC\x02` (`OP_TRANSFER`)
+  payloads, ensuring peer-to-peer non-custodial trading.
+- **The Wasteland Forge Studio:** End users can mint custom 1-of-1 bottlecaps
+  by drawing vector strokes or uploading badge emblems. Forging burns 50 BCAP
+  on mainnet via `CAPC\x04` (`OP_FORGE`), permanently anchoring the artwork's
+  SHA-256 recipe hash into chain history.
+
 ---
 
 ## 6. Current state of the network
@@ -385,30 +419,20 @@ carries no dates.
 - Mining pool: PROP + SOLO, 0% fee, ASIC and CPU ports
 - Block explorer
 - Non-custodial web wallet with reproducible builds
-- Public website with Linux node binaries and checksums
+- Public website with Linux, Windows, and macOS node binaries
+- **BTLCAP rebrand & 420M supply schedule:** 500 BCAP block reward, 420,000-block halving interval, and native `btlcap1…` SegWit addresses
+- **Built-in DNS seed node discovery:** automatic peer mesh via `caps.undergroundroots.ca`
+- **Mobile vault app (Caps Vault):** Android release with biometric authentication, key management, and 3D collectible viewer
+- **Bottlecaps (CAPC) sidechain:** AuxPoW merged mining on the pool, procedural card drops, single-use UTXO seals, and custom 50 BCAP Forge Studio
 
-### In progress — the BTLCAP rebrand
-- **Rename CAPS → BTLCAP** across the site, wallets, explorer and pool — new
-  name, ticker and bottle-cap logo, display-only (chain and balances untouched)
-- **New `btlcap1…` / `B…` addresses** — same keys and coins, re-spelled encoding
-- **A 500-reward / 420,000-block (four-year) halving schedule** raising the
-  eventual maximum to ~420,470,000 BTLCAP, a forward-only hard fork that
-  preserves every coin already mined — see Section 4.2
-- **A refreshed caps-core front end** and a coordinated node + pool + wallet
-  cutover, then a tagged release for independent node operators
-
-### Near term — lower the barrier to running BTLCAP
-- **Windows and macOS node binaries** (currently Linux-only) — the single
-  biggest accessibility gap
-- **A one-command node setup and published seed addresses.** At this size,
-  node count is a more meaningful decentralisation metric than hashrate
+### Near term — ecosystem utility
+- **Wasteland Trading Post:** Trustless on-chain P2P card swaps and exchange
 - Wallet improvements: receive-address rotation, clearer backup flow, offline/PWA use
-
-### Medium term — make it genuinely used
-- Community tipping and prizes actually circulating — the community-currency
-  pillar has to be demonstrated, not asserted
 - **Independent miners and a second pool**, so the current pool is not a
   chokepoint and Section 7.3 stops being true
+
+### Medium term — make it genuinely used
+- Community tipping and merchant checkout integrations
 - Hardware-wallet / offline signing support
 
 ### Long term — resilience
