@@ -228,3 +228,151 @@ pre code { background: none; color: var(--green); padding: 0; font-size: 13.5px;
   .beta-scan::after { animation: none; }
   .beta-overlay { transition: none; }
 }
+
+/* ── Bottlecaps Sidechain Snapshot Showcase ─────────────────────────────── */
+.cap-showcase-tray {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 14px;
+  margin: 22px 0 16px;
+}
+.cap-sample-card {
+  background: rgba(16, 20, 11, 0.88);
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px 10px;
+  text-align: center;
+  transition: transform 0.2s ease, border-color 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+.cap-sample-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  border-color: var(--amber);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.6);
+}
+.cap-sample-card.tier-1 { border-color: rgba(139, 139, 139, 0.4); }
+.cap-sample-card.tier-2 { border-color: rgba(205, 127, 50, 0.5); }
+.cap-sample-card.tier-3 { border-color: rgba(0, 229, 255, 0.6); box-shadow: 0 0 16px rgba(0, 229, 255, 0.18); }
+.cap-sample-card.tier-4 { border-color: rgba(255, 215, 0, 0.7); box-shadow: 0 0 20px rgba(255, 215, 0, 0.22); }
+.cap-sample-card.tier-5 { border-color: rgba(224, 64, 251, 0.85); box-shadow: 0 0 24px rgba(224, 64, 251, 0.28); }
+
+.cap-sample-canvas-wrap {
+  width: 120px;
+  height: 120px;
+  margin: 6px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cap-sample-canvas-wrap canvas {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.7));
+}
+.cap-sample-badge {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+.cap-sample-badge.t1 { color: #8b8b8b; background: rgba(139, 139, 139, 0.15); border: 1px solid rgba(139,139,139,0.3); }
+.cap-sample-badge.t2 { color: #cd7f32; background: rgba(205, 127, 50, 0.15); border: 1px solid rgba(205,127,50,0.3); }
+.cap-sample-badge.t3 { color: #00e5ff; background: rgba(0, 229, 255, 0.15); border: 1px solid rgba(0,229,255,0.4); text-shadow: 0 0 8px rgba(0,229,255,0.5); }
+.cap-sample-badge.t4 { color: #ffd700; background: rgba(255, 215, 0, 0.15); border: 1px solid rgba(255,215,0,0.4); text-shadow: 0 0 8px rgba(255,215,0,0.5); }
+.cap-sample-badge.t5 { color: #e040fb; background: rgba(224, 64, 251, 0.18); border: 1px solid rgba(224,64,251,0.5); text-shadow: 0 0 10px rgba(224,64,251,0.7); }
+
+.cap-sample-title { font-weight: 700; font-size: 13px; color: var(--fg); margin: 2px 0; }
+.cap-sample-serial { font-size: 11px; color: var(--amber); font-weight: 700; }
+.cap-sample-sub { font-size: 10.5px; color: var(--muted); margin-top: 2px; }
+
+/* ── Android Sideloading & Installation Guide ───────────────────────────── */
+.android-box {
+  background: rgba(21, 26, 15, 0.88);
+  border: 1px solid var(--amber);
+  border-radius: var(--radius);
+  padding: 24px clamp(16px, 4vw, 32px);
+  margin: 30px 0;
+  box-shadow: 0 0 30px rgba(245, 166, 35, 0.1);
+}
+.android-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.android-header h3 {
+  margin: 0;
+  font-size: clamp(20px, 4vw, 24px);
+  color: #fff;
+}
+.android-tag {
+  background: rgba(0, 255, 65, 0.12);
+  color: var(--green);
+  border: 1px solid rgba(0, 255, 65, 0.35);
+  padding: 3px 10px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+.sideload-list {
+  list-style: none;
+  padding: 0;
+  margin: 18px 0;
+  display: grid;
+  gap: 12px;
+}
+.sideload-step {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  background: rgba(10, 12, 6, 0.6);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px 16px;
+}
+.sideload-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--amber);
+  color: #1a1400;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 13px;
+}
+.sideload-text {
+  flex: 1;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--fg);
+}
+.sideload-text b { color: var(--amber); }
+.sha-box {
+  background: #090b05;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 12px;
+  word-break: break-all;
+  color: var(--green);
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+

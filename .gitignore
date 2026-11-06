@@ -1,2 +1,4 @@
 downloads/*.tar.gz
+downloads/*.zip
+downloads/*.apk
 whitepaper/__pycache__/
